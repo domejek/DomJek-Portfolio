@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Developer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Dev Portfolio</h1>
+            <ul class="nav-links">
+                <li><a href="#about">Über mich</a></li>
+                <li><a href="#tech">Tech Stack</a></li>
+                <li><a href="#projects">Projekte</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-title">Hallo, ich bin <span class="highlight">Dein Name</span></h1>
+            <p class="hero-subtitle">Full-Stack Developer | Cloud-Native Enthusiast</p>
+            <p class="hero-description">
+                Ich entwickle moderne Webanwendungen mit JavaScript, PHP und Cloud-Technologien.
+                Dieses Portfolio läuft auf Kubernetes! 🚀
+            </p>
+            <a href="#projects" class="cta-button">Projekte ansehen</a>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Über mich</h2>
+            <div class="about-content">
+                <p>
+                    Ich bin ein leidenschaftlicher Entwickler mit Fokus auf moderne Web-Technologien
+                    und Cloud-Native-Architekturen. Meine Reise begann mit klassischer Webentwicklung
+                    und hat sich zu containerisierten Microservices-Architekturen entwickelt.
+                </p>
+                <p>
+                    Aktuell beschäftige ich mich intensiv mit Kubernetes, Docker und DevOps-Praktiken,
+                    um skalierbare und wartbare Anwendungen zu erstellen.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" class="section tech-section">
+        <div class="container">
+            <h2 class="section-title">Tech Stack</h2>
+            <div id="tech-stack-container" class="tech-grid">
+                <div class="loading">Tech Stack wird geladen...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Meine Projekte</h2>
+            <div id="projects-container" class="projects-grid">
+                <div class="loading">Projekte werden geladen...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="contact-content">
+                <p>Interessiert an einer Zusammenarbeit? Lass uns verbinden!</p>
+                <div class="contact-links">
+                    <a href="mailto:deine-email@example.com" class="contact-button">Email</a>
+                    <a href="https://github.com/dein-username" class="contact-button" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/dein-profil" class="contact-button" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dein Name. Läuft auf Kubernetes ☸️</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
