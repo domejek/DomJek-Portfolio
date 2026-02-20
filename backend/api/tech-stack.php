@@ -12,14 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 $techStack = [
     [
-        'name' => 'JavaScript',
-        'category' => 'Frontend',
-        'description' => 'Moderne ES6+ Entwicklung mit React, Vue und Vanilla JS für interaktive Benutzeroberflächen.'
+        'name' => 'PHP & Laravel',
+        'category' => 'Backend',
+        'description' => 'Server-seitige Entwicklung mit PHP 8+, Laravel Framework und RESTful APIs.'
     ],
     [
-        'name' => 'PHP',
+        'name' => 'Java & Quarkus',
         'category' => 'Backend',
-        'description' => 'Server-seitige Entwicklung mit PHP 8+, RESTful APIs und Datenbankintegration.'
+        'description' => 'Cloud-Native Java-Anwendungen mit Quarkus für schnelle Startup-Zeiten und geringen Speicherverbrauch.'
+    ],
+    [
+        'name' => 'Python',
+        'category' => 'Backend',
+        'description' => 'Scripting, Automatisierung und Datenverarbeitung für DevOps-Workflows.'
     ],
     [
         'name' => 'Docker',
@@ -32,14 +37,19 @@ $techStack = [
         'description' => 'Orchestrierung von containerisierten Anwendungen mit automatischer Skalierung und Load Balancing.'
     ],
     [
+        'name' => 'Grafana & Prometheus',
+        'category' => 'Monitoring',
+        'description' => 'Monitoring und Visualisierung von Metriken. Dashboards für System- und Anwendungsüberwachung.'
+    ],
+    [
+        'name' => 'InfluxDB',
+        'category' => 'Database',
+        'description' => 'Time-Series Datenbank für Zeitreihendaten und Monitoring-Metriken.'
+    ],
+    [
         'name' => 'Git & GitHub',
         'category' => 'Tools',
         'description' => 'Versionskontrolle, CI/CD mit GitHub Actions und kollaborative Softwareentwicklung.'
-    ],
-    [
-        'name' => 'MySQL',
-        'category' => 'Database',
-        'description' => 'Relationale Datenbanken für strukturierte Datenspeicherung und komplexe Abfragen.'
     ]
 ];
 

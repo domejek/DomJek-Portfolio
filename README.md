@@ -63,7 +63,7 @@ DomJek-Portfolio/
 
 ```bash
 # Repository klonen
-git clone https://github.com/dein-username/DomJek-Portfolio.git
+git clone https://github.com/domejek/DomJek-Portfolio.git
 cd DomJek-Portfolio
 
 # Deployment starten
@@ -152,8 +152,11 @@ kubectl delete namespace portfolio
 ## Autor
 
 **Dominik Jeksties**
-- Full-Stack Developer
-- Cloud-Native Enthusiast
+- Full-Stack Developer | DevOps Enthusiast
+- Hagen, Germany
+
+[![GitHub](https://img.shields.io/badge/GitHub-domejek-181717?logo=github)](https://github.com/domejek)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Dominik_Jeksties-0A66C2?logo=linkedin)](https://www.linkedin.com/in/dominik-jeksties-0162a7216/)
 
 ## GitHub Actions
 

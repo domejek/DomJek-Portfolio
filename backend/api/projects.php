@@ -12,28 +12,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 $projects = [
     [
-        'name' => 'Kubernetes Portfolio',
+        'name' => 'DomJek-Portfolio',
         'description' => 'Diese Portfolio-Webseite läuft auf einem Kubernetes-Cluster mit Frontend und Backend Microservices. Demonstriert Container-Orchestrierung und moderne DevOps-Praktiken.',
         'technologies' => ['JavaScript', 'PHP', 'Docker', 'Kubernetes', 'Nginx'],
-        'github' => 'https://github.com/dein-username/portfolio-k8s'
+        'github' => 'https://github.com/domejek/DomJek-Portfolio'
     ],
     [
-        'name' => 'Task Management API',
-        'description' => 'RESTful API für Task-Management mit JWT-Authentifizierung, CRUD-Operationen und MySQL-Datenbank. Vollständig dokumentiert mit Swagger.',
-        'technologies' => ['PHP', 'MySQL', 'REST API', 'JWT'],
-        'github' => 'https://github.com/dein-username/task-api'
+        'name' => 'DomJek-Monitoring',
+        'description' => 'Einführung in Kubernetes mit Grafana & Prometheus. Monitoring-Stack für Cluster-Überwachung und Metriken-Visualisierung.',
+        'technologies' => ['Python', 'Kubernetes', 'Grafana', 'Prometheus'],
+        'github' => 'https://github.com/domejek/DomJek-Monitoring'
     ],
     [
-        'name' => 'Weather Dashboard',
-        'description' => 'Interaktives Wetter-Dashboard mit Echtzeit-Daten von OpenWeather API. Zeigt aktuelle Wetterbedingungen und 5-Tage-Vorhersagen.',
-        'technologies' => ['JavaScript', 'HTML5', 'CSS3', 'API Integration'],
-        'github' => 'https://github.com/dein-username/weather-dashboard'
+        'name' => 'Absences Grafana Kimai',
+        'description' => 'Visualisierung der Abwesenheiten aller Benutzer mit Wochenenden, Krankheiten, Urlaub und Feiertagen aus dem Zeiterfassungstool Kimai.',
+        'technologies' => ['PHP', 'Grafana', 'Kimai', 'API'],
+        'github' => 'https://github.com/domejek/Absences_Grafana_Kimai'
     ],
     [
-        'name' => 'Docker Multi-Container App',
-        'description' => 'Full-Stack Anwendung mit Docker Compose orchestriert: React Frontend, Node.js Backend, PostgreSQL Datenbank und Redis Cache.',
-        'technologies' => ['Docker', 'React', 'Node.js', 'PostgreSQL', 'Redis'],
-        'github' => 'https://github.com/dein-username/docker-fullstack'
+        'name' => 'DomJek-QuarkusCalculator',
+        'description' => 'Berechnung von Mittelwert & Abweichung mit Quarkus. Speicherung der Ergebnisse in einer InfluxDB-Instanz.',
+        'technologies' => ['Java', 'Quarkus', 'InfluxDB'],
+        'github' => 'https://github.com/domejek/DomJek-QuarkusCalculator'
+    ],
+    [
+        'name' => 'DomJek-LaravelREST',
+        'description' => 'RESTful API mit Laravel. Vollständiges CRUD mit Authentifizierung und API-Ressourcen.',
+        'technologies' => ['PHP', 'Laravel', 'REST API', 'MySQL'],
+        'github' => 'https://github.com/domejek/DomJek-LaravelREST'
+    ],
+    [
+        'name' => 'Brainfuck Calculator',
+        'description' => 'Challenge-Projekt: Implementierung eines Calculators in Brainfuck - der esoterischen Programmiersprache.',
+        'technologies' => ['Brainfuck', 'Interpreter'],
+        'github' => 'https://github.com/domejek/Brainfuck_Calculator-Challenge'
     ]
 ];
 
