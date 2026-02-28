@@ -42,10 +42,10 @@ $projects = [
         'github' => 'https://github.com/domejek/DomJek-LaravelREST'
     ],
     [
-        'name' => 'Brainfuck Calculator',
-        'description' => 'Challenge-Projekt: Implementierung eines Calculators in Brainfuck - der esoterischen Programmiersprache.',
-        'technologies' => ['Brainfuck', 'Interpreter'],
-        'github' => 'https://github.com/domejek/Brainfuck_Calculator-Challenge'
+        'name' => 'DomJek-Energiemarktdarstellung',
+        'description' => 'Abfrage und Darstellung der aFFR & FCR Werte vom deutschen Energiemarkt. Echtzeitdaten und Visualisierung mit Python, Pandas und Plotly.',
+        'technologies' => ['Python', 'Pandas', 'Selenium', 'Plotly', 'Matplotlib'],
+        'github' => 'https://github.com/domejek/DomJek-Energiemarktdarstellung'
     ]
 ];
 

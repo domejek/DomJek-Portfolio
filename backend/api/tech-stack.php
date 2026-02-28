@@ -47,6 +47,16 @@ $techStack = [
         'description' => 'Time-Series Datenbank für Zeitreihendaten und Monitoring-Metriken.'
     ],
     [
+        'name' => 'PostgreSQL',
+        'category' => 'Database',
+        'description' => 'Objekt-relationale Datenbank mit erweiterten Features wie JSON-Support und Full-Text Search.'
+    ],
+    [
+        'name' => 'MySQL',
+        'category' => 'Database',
+        'description' => 'Relationale Datenbank für Web-Anwendungen, optimiert für Transaktionen und Replikation.'
+    ],
+    [
         'name' => 'Git & GitHub',
         'category' => 'Tools',
         'description' => 'Versionskontrolle, CI/CD mit GitHub Actions und kollaborative Softwareentwicklung.'
