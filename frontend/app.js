@@ -1,10 +1,10 @@
-// API Backend URL (Kubernetes Service)
-const API_URL = 'http://localhost:8081/api';
+// API Base URL - served by same Node.js backend
+const API_URL = '';
 
 // Fetch Tech Stack from Backend
 async function loadTechStack() {
     try {
-        const response = await fetch(`${API_URL}/tech-stack.php`);
+        const response = await fetch(`${API_URL}/api/tech-stack`);
         const data = await response.json();
         
         const container = document.getElementById('tech-stack-container');
@@ -30,7 +30,7 @@ async function loadTechStack() {
 // Fetch Projects from Backend
 async function loadProjects() {
     try {
-        const response = await fetch(`${API_URL}/projects.php`);
+        const response = await fetch(`${API_URL}/api/projects`);
         const data = await response.json();
         
         const container = document.getElementById('projects-container');

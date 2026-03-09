@@ -20,7 +20,7 @@ spec:
         image: portfolio-backend:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 80
+        - containerPort: 3000
           name: http
         resources:
           requests:
@@ -31,22 +31,20 @@ spec:
             cpu: "500m"
         livenessProbe:
           httpGet:
-            path: /index.php
-            port: 80
+            path: /health
+            port: 3000
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
         readinessProbe:
           httpGet:
-            path: /index.php
-            port: 80
+            path: /health
+            port: 3000
           initialDelaySeconds: 20
           periodSeconds: 5
           timeoutSeconds: 3
           failureThreshold: 3
         env:
-        - name: APACHE_RUN_USER
-          value: "www-data"
-        - name: APACHE_RUN_GROUP
-          value: "www-data"
+        - name: PORT
+          value: "3000"

@@ -33,14 +33,11 @@ jobs:
         run: |
           kubectl apply -f k8s/namespace.yaml
           kubectl apply -f k8s/configmap.yaml
-          kubectl apply -f k8s/frontend-deployment.yaml
           kubectl apply -f k8s/backend-deployment.yaml
-          kubectl apply -f k8s/frontend-service.yaml
           kubectl apply -f k8s/backend-service.yaml
 
       - name: Wait for rollout
         run: |
-          kubectl rollout status deployment/frontend -n portfolio --timeout=120s
           kubectl rollout status deployment/backend -n portfolio --timeout=120s
 
       - name: Verify deployment

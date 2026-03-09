@@ -84,20 +84,12 @@ success "Cleanup abgeschlossen"
 echo ""
 info "Baue Docker Images..."
 
-if [ ! -d "frontend" ]; then
-    error "Frontend-Ordner nicht gefunden! Bist du im richtigen Verzeichnis?"
-fi
-
 if [ ! -d "backend" ]; then
     error "Backend-Ordner nicht gefunden! Bist du im richtigen Verzeichnis?"
 fi
 
-info "Baue Frontend Image..."
-docker build -t portfolio-frontend:latest ./frontend || error "Frontend Build fehlgeschlagen"
-success "Frontend Image gebaut"
-
 info "Baue Backend Image..."
-docker build -t portfolio-backend:latest ./backend || error "Backend Build fehlgeschlagen"
+docker build -t portfolio-backend:latest . || error "Backend Build fehlgeschlagen"
 success "Backend Image gebaut"
 
 # Images anzeigen
@@ -131,13 +123,11 @@ fi
 
 # Schritt 3: Deployments erstellen
 info "Erstelle Deployments..."
-kubectl apply -f k8s/frontend-deployment.yaml || error "Frontend-Deployment fehlgeschlagen"
 kubectl apply -f k8s/backend-deployment.yaml || error "Backend-Deployment fehlgeschlagen"
 success "Deployments erstellt"
 
 # Schritt 4: Services erstellen
 info "Erstelle Services..."
-kubectl apply -f k8s/frontend-service.yaml || error "Frontend-Service fehlgeschlagen"
 kubectl apply -f k8s/backend-service.yaml || error "Backend-Service fehlgeschlagen"
 success "Services erstellt"
 
@@ -150,17 +140,6 @@ echo ""
 # Zeige Pod-Status während sie starten
 info "Pod-Status:"
 kubectl get pods -n portfolio
-
-# Warte auf Frontend Pods
-echo ""
-info "Warte auf Frontend Pods..."
-kubectl wait --for=condition=ready pod -l app=frontend -n portfolio --timeout=120s || {
-    echo ""
-    error "Frontend Pods sind nicht bereit geworden. Logs:"
-    kubectl logs -l app=frontend -n portfolio --tail=20
-    exit 1
-}
-success "Frontend Pods sind bereit"
 
 # Warte auf Backend Pods
 info "Warte auf Backend Pods..."
@@ -191,8 +170,7 @@ echo ""
 cleanup() {
     echo ""
     info "Beende Port-Forwarding..."
-    kill $FRONTEND_PID 2>/dev/null || true
-    kill $BACKEND_PID 2>/dev/null || true
+    kill $PORT_PID 2>/dev/null || true
     success "Port-Forwarding beendet"
     exit 0
 }
@@ -200,11 +178,8 @@ cleanup() {
 trap cleanup SIGINT SIGTERM
 
 # Starte Port-Forwarding im Hintergrund
-kubectl port-forward service/frontend 8080:80 -n portfolio > /dev/null 2>&1 &
-FRONTEND_PID=$!
-
-kubectl port-forward service/backend 8081:80 -n portfolio > /dev/null 2>&1 &
-BACKEND_PID=$!
+kubectl port-forward service/backend 8080:3000 -n portfolio > /dev/null 2>&1 &
+PORT_PID=$!
 
 # Warte kurz damit Port-Forwarding startet
 sleep 5
@@ -213,15 +188,9 @@ sleep 5
 echo ""
 info "Teste Verbindungen..."
 if curl -s -f http://localhost:8080 > /dev/null 2>&1; then
-    success "Frontend ist erreichbar unter http://localhost:8080"
+    success "Anwendung ist erreichbar unter http://localhost:8080"
 else
-    warning "Frontend möglicherweise noch nicht bereit (starte trotzdem)"
-fi
-
-if curl -s -f http://localhost:8081/index.php > /dev/null 2>&1; then
-    success "Backend ist erreichbar unter http://localhost:8081"
-else
-    warning "Backend möglicherweise noch nicht bereit (starte trotzdem)"
+    warning "Anwendung möglicherweise noch nicht bereit (starte trotzdem)"
 fi
 
 # Erfolgsmeldung
@@ -232,9 +201,8 @@ echo -e "${GREEN}========================================${NC}"
 echo ""
 echo -e "${BLUE}📱 Deine Anwendung läuft jetzt:${NC}"
 echo ""
-echo -e "   ${GREEN}Frontend:${NC} http://localhost:8080"
-echo -e "   ${GREEN}Backend:${NC}  http://localhost:8081"
-echo -e "   ${GREEN}API:${NC}      http://localhost:8081/api/projects.php"
+echo -e "   ${GREEN}URL:${NC}       http://localhost:8080"
+echo -e "   ${GREEN}API:${NC}      http://localhost:8080/api/projects"
 echo ""
 echo -e "${YELLOW}🌐 Öffne deinen Browser und besuche:${NC}"
 echo -e "   ${YELLOW}http://localhost:8080${NC}"
