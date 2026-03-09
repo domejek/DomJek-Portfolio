@@ -4,16 +4,16 @@ Ein modernes, cloud-natives Portfolio-Projekt mit Kubernetes-Deployment.
 
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-326CE5?logo=kubernetes&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-20-339933?logo=node.js&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
 
 ## Features
 
 - Responsive Single-Page Portfolio
-- RESTful Backend API (PHP)
+- RESTful Backend API (Node.js/Express)
 - Containerized mit Docker
 - Kubernetes-Orchestrierung
-- Microservices-Architektur
+- Single-Container-Architektur (Backend servt auch Frontend)
 - Automatisches Deployment-Script
 
 ## Tech Stack
@@ -21,10 +21,9 @@ Ein modernes, cloud-natives Portfolio-Projekt mit Kubernetes-Deployment.
 | Bereich | Technologien |
 |---------|-------------|
 | Frontend | HTML5, CSS3, JavaScript (Vanilla) |
-| Backend | PHP 8.2, Apache |
-| Container | Docker, Nginx (Frontend), PHP-Apache (Backend) |
+| Backend | Node.js 20, Express.js |
+| Container | Docker, Node.js (Frontend + Backend) |
 | Orchestrierung | Kubernetes (k8s) |
-| Webserver | Nginx, Apache |
 
 ## Projektstruktur
 
@@ -33,22 +32,19 @@ DomJek-Portfolio/
 ├── frontend/
 │   ├── index.html
 │   ├── styles.css
-│   ├── app.js
-│   ├── nginx.conf
-│   └── Dockerfile
+│   └── app.js
 ├── backend/
-│   ├── index.php
-│   ├── api/
-│   │   ├── tech-stack.php
-│   │   └── projects.php
-│   └── Dockerfile
+│   ├── server.js
+│   ├── package.json
+│   └── data/
+│       ├── projects.json
+│       └── tech-stack.json
 ├── k8s/
 │   ├── namespace.yaml
 │   ├── configmap.yaml
-│   ├── frontend-deployment.yaml
-│   ├── frontend-service.yaml
 │   ├── backend-deployment.yaml
 │   └── backend-service.yaml
+├── Dockerfile
 ├── deploy.sh
 └── README.md
 ```
@@ -77,20 +73,19 @@ Das Script führt automatisch aus:
 4. Startet Port-Forwarding
 
 Nach erfolgreichem Deployment:
-- Frontend: http://localhost:8080
-- Backend API: http://localhost:8081
+- Anwendung: http://localhost:8080
 
 ## API Endpoints
 
 | Endpoint | Methode | Beschreibung |
 |----------|---------|--------------|
-| `/index.php` | GET | API Status |
-| `/api/tech-stack.php` | GET | Tech Stack Daten |
-| `/api/projects.php` | GET | Projekt-Liste |
+| `/health` | GET | API Status |
+| `/api/tech-stack` | GET | Tech Stack Daten |
+| `/api/projects` | GET | Projekt-Liste |
 
 ### Beispiel Response
 
-**GET** `/api/projects.php`
+**GET** `/api/projects`
 ```json
 {
   "success": true,
@@ -98,7 +93,7 @@ Nach erfolgreichem Deployment:
     {
       "name": "Kubernetes Portfolio",
       "description": "Portfolio-Webseite auf Kubernetes...",
-      "technologies": ["JavaScript", "PHP", "Docker", "Kubernetes"],
+      "technologies": ["JavaScript", "Node.js", "Docker", "Kubernetes"],
       "github": "https://github.com/..."
     }
   ],
@@ -127,18 +122,13 @@ kubectl delete namespace portfolio
 
 ## Lokale Entwicklung (ohne Kubernetes)
 
-**Frontend:**
-```bash
-cd frontend
-# Mit einem lokalen Server (z.B. Live Server Extension)
-# Oder: python3 -m http.server 8080
-```
-
-**Backend:**
 ```bash
 cd backend
-php -S localhost:8081
+npm install
+npm start
 ```
+
+Server läuft dann auf http://localhost:3000
 
 ## Deployment stoppen
 
