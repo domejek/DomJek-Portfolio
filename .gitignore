@@ -5,10 +5,18 @@ vendor/
 # Environment files
 .env
 .env.local
+/backend/.env
+/backend/.env.local
+/backend/.env.example
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.example
+
 
 # Build outputs
 dist/
 build/
+/backend/.wrangler/
 
 # IDE
 .vscode/

@@ -1,61 +1,42 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
+import projects from './data/projects.json' with { type: 'json' };
+import techStack from './data/tech-stack.json' with { type: 'json' };
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const app = new Hono();
 
-app.use(cors());
-app.use(express.json());
+app.use('*', logger());
+app.use('*', cors());
 
-app.use((req, res, next) => {
-    console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
-    next();
-});
-
-const loadJson = (filename) => {
-    const filePath = path.join(__dirname, 'data', filename);
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-};
-
-app.get('/health', (req, res) => {
-    res.json({
+app.get('/health', (c) => {
+    return c.json({
         success: true,
         message: 'Portfolio Backend API is running!',
         version: '2.0.0',
-        kubernetes: true,
+        cloudflare: true,
         timestamp: new Date().toISOString()
     });
 });
 
-app.get('/api/projects', (req, res) => {
-    const projects = loadJson('projects.json');
-    res.json({
+app.get('/api/projects', (c) => {
+    return c.json({
         success: true,
         projects: projects,
         count: projects.length
     });
 });
 
-app.get('/api/tech-stack', (req, res) => {
-    const techStack = loadJson('tech-stack.json');
-    res.json({
+app.get('/api/tech-stack', (c) => {
+    return c.json({
         success: true,
         techStack: techStack,
         count: techStack.length
     });
 });
 
-const frontendPath = path.join(__dirname, '../frontend');
-console.log('Serving frontend from:', frontendPath);
+export { app };
 
-app.use(express.static(frontendPath));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-});
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+export default {
+    fetch: app.fetch
+};
