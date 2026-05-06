@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mein Developer Portfolio</title>
+    <title>Dominik Jeksties – Softwareentwickler Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <h1 class="logo">Dev Portfolio</h1>
+            <h1 class="logo"><span>DJ</span> Portfolio</h1>
             <ul class="nav-links">
                 <li><a href="#about">Über mich</a></li>
+                <li><a href="#timeline">Werdegang</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#tech">Tech Stack</a></li>
                 <li><a href="#projects">Projekte</a></li>
                 <li><a href="#contact">Kontakt</a></li>
@@ -21,24 +26,235 @@
 
     <header class="hero">
         <div class="container">
-            <h1 class="hero-title">Hallo, ich bin <span class="highlight">Dominik Jeksties</span></h1>
-            <p class="hero-subtitle">Full-Stack Developer | Cloud-Native Enthusiast</p>
-            <p class="hero-description">
-                Ich entwickle moderne Webanwendungen mit JavaScript, PHP und Cloud-Technologien.
-                Dieses Portfolio läuft auf Cloudflare Workers! ⚡
-            </p>
-            <a href="#projects" class="cta-button">Projekte ansehen</a>
+            <div class="hero-content">
+                <h1 class="hero-title">Hallo, ich bin <span class="highlight">Dominik Jeksties</span></h1>
+                <p class="hero-role">Softwareentwickler | PHP, Python & Monitoring-Infrastruktur</p>
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Hagen, Deutschland</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                        <span>Offen für neue Chancen</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+                        <span>Deutsch (Muttersprache) · Englisch (gut)</span>
+                    </div>
+                </div>
+                <p class="hero-description">
+                    Softwareentwickler mit Erfahrung in Backend-Systemen, Datenschnittstellen 
+                    und Monitoring-Infrastrukturen. Fundierte Kenntnisse in PHP, Python und JavaScript – 
+                    von NAC-Engine bis Energiemarkt-Dashboards.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0 3 6 2 0 4-1.5 4-4 0 2-3 4.5-4 5.5 4.5 1.5 6 4.5 4.5 6V22"/></svg>
+                        Projekte ansehen
+                    </a>
+                    <a href="#contact" class="btn-secondary">Kontakt aufnehmen</a>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <div class="photo-wrapper">
+                    <img src="png/Dominik Jeksties.png" alt="Dominik Jeksties - Bewerbungsfoto">
+                </div>
+            </div>
         </div>
     </header>
+
+    <section class="section quick-facts">
+        <div class="container">
+            <h2 class="section-title">Auf einen Blick</h2>
+            <p class="section-subtitle">Die wichtigsten Fakten für einen schnellen Überblick</p>
+            <div class="facts-grid">
+                <div class="fact-card animate-on-scroll">
+                    <div class="fact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <div class="fact-value">Fachinformatiker</div>
+                    <div class="fact-label">Anwendungsentwicklung</div>
+                </div>
+                <div class="fact-card animate-on-scroll">
+                    <div class="fact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div class="fact-value">2+ Jahre</div>
+                    <div class="fact-label">Berufserfahrung</div>
+                </div>
+                <div class="fact-card animate-on-scroll">
+                    <div class="fact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="fact-value">Hagen</div>
+                    <div class="fact-label">Standort</div>
+                </div>
+                <div class="fact-card animate-on-scroll">
+                    <div class="fact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                    </div>
+                    <div class="fact-value">Cisco</div>
+                    <div class="fact-label">Cybersecurity Zertifikat</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="about" class="section">
         <div class="container">
             <h2 class="section-title">Über mich</h2>
+            <p class="section-subtitle">Wer ich bin und was mich antreibt</p>
             <div class="about-content">
-                <p>
-                    Ich entwickle skalierbare Anwendungen mit PHP, Python und JavaScript. PostgreSQL, Docker 
-                    und Monitoring sind meine Werkzeuge für zuverlässige Systeme.
-                </p>
+                <div class="about-text animate-on-scroll">
+                    <h3>Softwareentwickler mit Fokus auf Backend-Systeme & Monitoring</h3>
+                    <p>
+                        Softwareentwickler in der Entwicklung von Backend-Systemen, Datenschnittstellen und 
+                        Monitoring-Infrastrukturen. Ich bringe fundierte Kenntnisse in PHP, Python und JavaScript 
+                        mit und habe in beiden Stationen echte Produktivsysteme mit- und weiterentwickelt.
+                    </p>
+                    <p>
+                        Von NAC-Engine über Energiemarkt-Dashboards bis hin zu automatisierten Report-Systemen. 
+                        Ich arbeite strukturiert, eigenverantwortlich und schätze sauberen, gut dokumentierten Code.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="about-highlight-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>PHP & Laravel</span>
+                        </div>
+                        <div class="about-highlight-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Python & Scripting</span>
+                        </div>
+                        <div class="about-highlight-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>PostgreSQL & InfluxDB</span>
+                        </div>
+                        <div class="about-highlight-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Grafana & Monitoring</span>
+                        </div>
+                        <div class="about-highlight-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Docker & Portainer</span>
+                        </div>
+                        <div class="about-highlight-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>REST APIs & CGI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image animate-on-scroll">
+                    <div class="about-image-wrapper">
+                        <img src="png/Dominik Jeksties.png" alt="Dominik Jeksties">
+                    </div>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <div class="about-stat-number">2+</div>
+                            <div class="about-stat-label">Jahre Erfahrung</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-number">6+</div>
+                            <div class="about-stat-label">Sprachen</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-number">100%</div>
+                            <div class="about-stat-label">Engagement</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="section timeline-section">
+        <div class="container">
+            <h2 class="section-title">Werdegang</h2>
+            <p class="section-subtitle">Meine berufliche Entwicklung und Meilensteine</p>
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">07/2024 – 02/2026</div>
+                        <div class="timeline-title">IT- und Softwareentwicklung</div>
+                        <div class="timeline-company">Upside Consulting GmbH, Dülmen</div>
+                        <div class="timeline-desc">
+                            Entwicklung und Pflege PHP-basierter Datenschnittstellen und Steuerungsprogramme 
+                            inkl. automatisierter Tests und Dokumentation. Betrieb und Optimierung von 
+                            PostgreSQL-Datenbanken mit Fokus auf Performance und Datenstabilität.
+                        </div>
+                        <div class="timeline-desc" style="margin-top: 0.5rem;">
+                            Ausbau der Monitoring-Infrastruktur: Integration neuer Batterie-Container-Standorte 
+                            in Grafana/InfluxDB via Telegraf, MQTT & Modbus. Python-Skripting zur 
+                            Datenauswertung & Analysen.
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">04/2021 – 06/2024</div>
+                        <div class="timeline-title">Fachinformatiker für Anwendungsentwicklung</div>
+                        <div class="timeline-company">ISL Internet Sicherheitslösungen GmbH, Bochum</div>
+                        <div class="timeline-desc">
+                            Mit-Entwicklung der Engine des NAC-Produkts ARP-GUARD in Perl und JavaScript. 
+                            Third-Level-Support für Netzwerksicherheitsprodukte.
+                        </div>
+                        <div class="timeline-desc" style="margin-top: 0.5rem;">
+                            Abschlussprojekt: Automatisiertes Netzwerkreport-System mit PDF-Generierung 
+                            (PDF::API2), Diagrammerstellung (Gnuplot), E-Mail-Versand und Cron-basierter 
+                            Planung auf PostgreSQL-Basis.
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">09/2018 – 08/2020</div>
+                        <div class="timeline-title">Fachhochschulreife</div>
+                        <div class="timeline-company">Cuno-Berufskolleg I, Hagen</div>
+                        <div class="timeline-desc">
+                            Informations- & Telekommunikationstechnik
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Arbeitsweise & Soft Skills</h2>
+            <p class="section-subtitle">Was mich als Teamkollegen ausmacht</p>
+            <div class="skills-grid">
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <h3>Eigeninitiative</h3>
+                    <p>Arbeite eigenverantwortlich und bringe proaktiv Lösungen ein</p>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h3>Analytisches Denken</h3>
+                    <p>Strukturierte Herangehensweise an komplexe technische Herausforderungen</p>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Teamfähigkeit</h3>
+                    <p>Kollaborative Entwicklung mit klarem Fokus auf gemeinsame Ziele</p>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+                    </div>
+                    <h3>Lösungsorientiert</h3>
+                    <p>Sauberer, gut dokumentierter Code mit Fokus auf Wartbarkeit</p>
+                </div>
             </div>
         </div>
     </section>
@@ -46,13 +262,15 @@
     <section id="tech" class="section tech-section">
         <div class="container">
             <h2 class="section-title">Tech Stack</h2>
+            <p class="section-subtitle">Die Technologien, mit denen ich arbeite</p>
             <div id="tech-stack-container" class="tech-grid"></div>
         </div>
     </section>
 
     <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title">Meine Projekte</h2>
+            <h2 class="section-title">Projekte</h2>
+            <p class="section-subtitle">Eine Auswahl meiner Arbeiten</p>
             <div id="projects-container" class="projects-grid"></div>
         </div>
     </section>
@@ -60,11 +278,17 @@
     <section id="contact" class="section contact-section">
         <div class="container">
             <h2 class="section-title">Kontakt</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.7);">Interessiert an einer Zusammenarbeit? Ich freue mich auf Ihre Nachricht!</p>
             <div class="contact-content">
-                <p>Interessiert an einer Zusammenarbeit? Lass uns verbinden!</p>
                 <div class="contact-links">
-                    <a href="https://github.com/domejek" class="contact-button" target="_blank">GitHub</a>
-                    <a href="https://www.linkedin.com/in/dominik-jeksties-0162a7216/" class="contact-button" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/domejek" class="contact-button" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0 3 6 2 0 4-1.5 4-4 0 2-3 4.5-4 5.5 4.5 1.5 6 4.5 4.5 6V22"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/dominik-jeksties-0162a7216/" class="contact-button" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        LinkedIn
+                    </a>
                 </div>
             </div>
         </div>
@@ -72,31 +296,33 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Dominik Jeksties. Läuft auf Cloudflare Workers ⚡</p>
+            <p>&copy; 2026 Dominik Jeksties – Softwareentwickler</p>
         </div>
     </footer>
 
     <script>
         const techStackData = [
-            {"name": "PHP & Laravel", "category": "Backend", "description": "Server-seitige Entwicklung mit PHP 8+, Laravel Framework und RESTful APIs."},
-            {"name": "Java & Quarkus", "category": "Backend", "description": "Cloud-Native Java-Anwendungen mit Quarkus für schnelle Startup-Zeiten und geringen Speicherverbrauch."},
-            {"name": "Python", "category": "Backend", "description": "Scripting, Automatisierung und Datenverarbeitung für DevOps-Workflows."},
-            {"name": "Docker", "category": "DevOps", "description": "Containerisierung von Anwendungen für konsistente Entwicklungs- und Produktionsumgebungen."},
-            {"name": "Kubernetes", "category": "DevOps", "description": "Orchestrierung von containerisierten Anwendungen mit automatischer Skalierung und Load Balancing."},
-            {"name": "Grafana & Prometheus", "category": "Monitoring", "description": "Monitoring und Visualisierung von Metriken. Dashboards für System- und Anwendungsüberwachung."},
-            {"name": "InfluxDB", "category": "Database", "description": "Time-Series Datenbank für Zeitreihendaten und Monitoring-Metriken."},
-            {"name": "PostgreSQL", "category": "Database", "description": "Objekt-relationale Datenbank mit erweiterten Features wie JSON-Support und Full-Text Search."},
-            {"name": "MySQL", "category": "Database", "description": "Relationale Datenbank für Web-Anwendungen, optimiert für Transaktionen und Replikation."},
-            {"name": "Git & GitHub", "category": "Tools", "description": "Versionskontrolle, CI/CD mit GitHub Actions und kollaborative Softwareentwicklung."}
+            {"name": "PHP & Laravel", "category": "Sprachen & Frameworks", "description": "Server-seitige Entwicklung mit PHP 8+, Laravel Framework, Datenschnittstellen und Steuerungsprogramme.", "level": 5},
+            {"name": "Python", "category": "Sprachen", "description": "Scripting, Datenauswertung und Analysen für Monitoring-Workflows und Automatisierung.", "level": 4},
+            {"name": "JavaScript & NodeJS", "category": "Sprachen & Frameworks", "description": "Frontend-Entwicklung, REST APIs und serverseitige Anwendungen mit NodeJS.", "level": 4},
+            {"name": "Perl", "category": "Sprachen", "description": "Entwicklung der NAC-Engine ARP-GUARD und automatisierte Report-Systeme.", "level": 3},
+            {"name": "Java & Quarkus", "category": "Sprachen & Frameworks", "description": "Cloud-Native Java-Anwendungen mit Quarkus Framework.", "level": 3},
+            {"name": "React & HTML/CSS", "category": "Frontend", "description": "Moderne Webanwendungen mit React Framework und responsive Design.", "level": 4},
+            {"name": "PostgreSQL", "category": "Datenbanken", "description": "Betrieb und Optimierung mit Fokus auf Performance und Datenstabilität.", "level": 5},
+            {"name": "InfluxDB & MySQL", "category": "Datenbanken", "description": "Time-Series Daten für Monitoring und relationale Datenbanken für Web-Anwendungen.", "level": 4},
+            {"name": "Grafana & Prometheus", "category": "Monitoring", "description": "Monitoring-Infrastruktur mit Dashboards, Telegraf, MQTT und Modbus Integration.", "level": 5},
+            {"name": "Docker & Portainer", "category": "DevOps", "description": "Containerisierung und Management für konsistente Entwicklungs- und Produktionsumgebungen.", "level": 4},
+            {"name": "Linux & Apache/Nginx", "category": "DevOps", "description": "Linux-Server Administration und Webserver-Konfiguration.", "level": 4},
+            {"name": "Git & REST API", "category": "Tools", "description": "Versionskontrolle, kollaborative Entwicklung und REST API Design.", "level": 4}
         ];
         
         const projectsData = [
-            {"name": "DomJek-Portfolio", "description": "Diese Portfolio-Webseite läuft auf einem Kubernetes-Cluster mit Frontend und Backend Microservices.", "technologies": ["JavaScript", "PHP", "Docker", "Kubernetes", "Nginx"], "github": "https://github.com/domejek/DomJek-Portfolio"},
-            {"name": "DomJek-Monitoring", "description": "Einführung in Kubernetes mit Grafana & Prometheus. Monitoring-Stack für Cluster-Überwachung.", "technologies": ["Python", "Kubernetes", "Grafana", "Prometheus"], "github": "https://github.com/domejek/DomJek-Monitoring"},
-            {"name": "Absences Grafana Kimai", "description": "Visualisierung der Abwesenheiten aus dem Zeiterfassungstool Kimai.", "technologies": ["PHP", "Grafana", "Kimai", "API"], "github": "https://github.com/domejek/Absences_Grafana_Kimai"},
-            {"name": "DomJek-QuarkusCalculator", "description": "Berechnung von Mittelwert & Abweichung mit Quarkus.", "technologies": ["Java", "Quarkus", "InfluxDB"], "github": "https://github.com/domejek/DomJek-QuarkusCalculator"},
-            {"name": "DomJek-LaravelREST", "description": "RESTful API mit Laravel. Vollständiges CRUD mit Authentifizierung.", "technologies": ["PHP", "Laravel", "REST API", "MySQL"], "github": "https://github.com/domejek/DomJek-LaravelREST"},
-            {"name": "DomJek-Energiemarktdarstellung", "description": "Abfrage und Darstellung der aFFR & FCR Werte vom deutschen Energiemarkt.", "technologies": ["Python", "Pandas", "Selenium", "Plotly"], "github": "https://github.com/domejek/DomJek-Energiemarktdarstellung"}
+            {"name": "DomJek-Portfolio", "description": "Diese Portfolio-Webseite mit Frontend und Backend Microservices auf Kubernetes.", "technologies": ["JavaScript", "PHP", "Docker", "Kubernetes"], "github": "https://github.com/domejek/DomJek-Portfolio"},
+            {"name": "DomJek-Monitoring", "description": "Kubernetes Monitoring-Stack mit Grafana & Prometheus für Cluster-Überwachung.", "technologies": ["Python", "Kubernetes", "Grafana", "Prometheus"], "github": "https://github.com/domejek/DomJek-Monitoring"},
+            {"name": "Absences Grafana Kimai", "description": "Visualisierung von Abwesenheiten aus dem Zeiterfassungstool Kimai.", "technologies": ["PHP", "Grafana", "Kimai", "API"], "github": "https://github.com/domejek/Absences_Grafana_Kimai"},
+            {"name": "DomJek-QuarkusCalculator", "description": "Berechnung von Mittelwert & Abweichung mit Quarkus und InfluxDB.", "technologies": ["Java", "Quarkus", "InfluxDB"], "github": "https://github.com/domejek/DomJek-QuarkusCalculator"},
+            {"name": "DomJek-LaravelREST", "description": "RESTful API mit Laravel – vollständiges CRUD mit Authentifizierung.", "technologies": ["PHP", "Laravel", "REST API", "MySQL"], "github": "https://github.com/domejek/DomJek-LaravelREST"},
+            {"name": "Energiemarktdarstellung", "description": "Darstellung der aFFR & FCR Werte vom deutschen Energiemarkt.", "technologies": ["Python", "Pandas", "Selenium", "Plotly"], "github": "https://github.com/domejek/DomJek-Energiemarktdarstellung"}
         ];
     </script>
     <script src="app.js"></script>
