@@ -14,16 +14,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '20'
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
+
+      - name: Create frontend/.env to ensure all frontend files are tracked
+        run: touch ../frontend/.env || true
+        working-directory: backend
 
       - name: Install dependencies
         run: npm ci
         working-directory: backend
 
       - name: Deploy to Cloudflare Workers
-        run: node ./node_modules/wrangler/bin/wrangler.js deploy
+        run: node ./node_modules/wrangler/bin/wrangler.js deploy --config wrangler.jsonc
         working-directory: backend
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
