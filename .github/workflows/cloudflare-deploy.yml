@@ -23,7 +23,13 @@ jobs:
         working-directory: backend
 
       - name: Deploy to Cloudflare Workers
-        run: npx wrangler deploy
+        run: |
+          echo "=== Debug: check files ==="
+          ls -la ../frontend/index.html
+          echo "=== Debug: wrangler version ==="
+          ./node_modules/.bin/wrangler --version
+          echo "=== Deploy ==="
+          ./node_modules/.bin/wrangler deploy
         working-directory: backend
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
