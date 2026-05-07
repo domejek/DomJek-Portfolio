@@ -1,6 +1,8 @@
 {
+  "$schema": "https://raw.githubusercontent.com/nicedoc/wrangler/refs/heads/main/packages/wrangler/config-schema.json",
   "name": "domjek-portfolio",
   "main": "./server.js",
+  "account_id": "566f4dd831fd5d31fa23b41e6d57f0f0",
   "compatibility_date": "2026-04-13",
   "compatibility_flags": ["nodejs_compat_v2"],
   "assets": {
