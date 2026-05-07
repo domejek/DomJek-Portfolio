@@ -23,16 +23,7 @@ jobs:
         working-directory: backend
 
       - name: Deploy to Cloudflare Workers
-        run: |
-          ./node_modules/.bin/wrangler deploy 2>&1 | tee /tmp/deploy.log
-          exit ${PIPESTATUS[0]}
+        run: node ./node_modules/wrangler/bin/wrangler.js deploy
         working-directory: backend
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
-      - name: Upload error logs on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: deploy-logs
-          path: /tmp/deploy.log
