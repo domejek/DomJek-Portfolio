@@ -5,7 +5,7 @@
   "compatibility_flags": ["nodejs_compat_v2"],
   "assets": {
     "directory": "../frontend",
-    "browser": true,
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   }
 }
