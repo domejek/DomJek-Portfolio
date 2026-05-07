@@ -6,12 +6,6 @@
         "github": "https://github.com/domejek/DomJek-Portfolio"
     },
     {
-        "name": "DomJek-Monitoring",
-        "description": "Einführung in Kubernetes mit Grafana & Prometheus. Monitoring-Stack für Cluster-Überwachung und Metriken-Visualisierung.",
-        "technologies": ["Python", "Kubernetes", "Grafana", "Prometheus"],
-        "github": "https://github.com/domejek/DomJek-Monitoring"
-    },
-    {
         "name": "Absences Grafana Kimai",
         "description": "Visualisierung der Abwesenheiten aller Benutzer mit Wochenenden, Krankheiten, Urlaub und Feiertagen aus dem Zeiterfassungstool Kimai.",
         "technologies": ["PHP", "Grafana", "Kimai", "API"],
