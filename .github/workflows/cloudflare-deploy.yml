@@ -22,14 +22,8 @@ jobs:
         run: npm ci
         working-directory: backend
 
-      - name: Debug - Test wrangler auth
-        run: npx wrangler whoami
-        working-directory: backend
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
       - name: Deploy to Cloudflare Workers
-        run: npx wrangler deploy 2>&1
+        run: npx wrangler deploy
         working-directory: backend
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
