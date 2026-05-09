@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energiemarktdarstellung — Projekt von Dominik Jeksties</title>
+    <meta name="description" content="Projekt: Darstellung der aFFR & FCR Werte vom deutschen Energiemarkt mit Python, Pandas, Selenium und Plotly.">
+    <link rel="canonical" href="https://dominikjeksties.de/projekte/energiemarktdarstellung.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../favicon.svg">
+    <meta property="og:title" content="Energiemarktdarstellung — Projekt">
+    <meta property="og:description" content="Python-Projekt zur Visualisierung von aFFR & FCR Werten des deutschen Energiemarkts.">
+    <meta property="og:url" content="https://dominikjeksties.de/projekte/energiemarktdarstellung.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://dominikjeksties.de/images/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-detail { max-width: 720px; margin: 0 auto; padding: 4rem 0; }
+        .project-detail h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; color: var(--navy); }
+        .project-detail .tech-tags { margin-bottom: 2rem; }
+        .project-detail p { color: var(--slate); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.05rem; }
+        .project-detail ul { color: var(--slate); line-height: 1.8; margin: 0 0 1.5rem 1.5rem; }
+        .project-detail li { margin-bottom: 0.5rem; }
+        .project-detail h2 { font-size: 1.4rem; font-weight: 700; color: var(--navy); margin: 2rem 0 1rem; }
+        .project-header { background: var(--light); padding: 3rem 0 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../" style="text-decoration: none;"><div class="logo"><span>DJ</span> Portfolio</div></a>
+            <ul class="nav-links">
+                <li><a href="../#about">Über mich</a></li>
+                <li><a href="../#timeline">Werdegang</a></li>
+                <li><a href="../#tech">Tech Stack</a></li>
+                <li><a href="../#projects">Projekte</a></li>
+                <li><a href="../blog/">Blog</a></li>
+                <li><a href="../#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="project-header">
+        <div class="container">
+            <p style="margin-bottom: 0.5rem;"><a href="../#projects" style="color: var(--gray); text-decoration: none;">&larr; Zur&uuml;ck zu Projekten</a></p>
+            <h1>Energiemarktdarstellung</h1>
+            <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Selenium</span>
+                <span class="tech-tag">Plotly</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-detail">
+        <h2>Über das Projekt</h2>
+        <p>
+            Dieses Python-Projekt ruft automatisiert die aktuellen aFFR (automatic Frequency Restoration Reserve) 
+            und FCR (Frequency Containment Reserve) Werte des deutschen Energiemarkts ab und visualisiert sie 
+            in interaktiven Diagrammen. Die Daten werden von &ouml;ffentlichen Quellen bezogen, mit Pandas 
+            bereinigt und mit Plotly in einem &uuml;bersichtlichen Dashboard dargestellt.
+        </p>
+
+        <h2>Technische Details</h2>
+        <ul>
+            <li>Datenextraktion aus dynamischen HTML-Tabellen via Selenium</li>
+            <li>Datenbereinigung und -transformation mit Pandas</li>
+            <li>Interaktive Diagramme mit Plotly (HTML-Export)</li>
+            <li>Cron-Job-Automatisierung f&uuml;r t&auml;gliche Aktualisierung</li>
+        </ul>
+
+        <h2>Link</h2>
+        <p>
+            <a href="https://github.com/domejek/DomJek-Energiemarktdarstellung" target="_blank" rel="noopener nofollow">
+                GitHub Repository &rarr;
+            </a>
+        </p>
+
+        <h2>Blogpost</h2>
+        <p>
+            Ausf&uuml;hrliche Beschreibung im Blog: 
+            <a href="../blog/energiemarkt-visualisierung-python-plotly.html">Energiemarkt-Daten mit Python &amp; Plotly visualisieren</a>
+        </p>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Dominik Jeksties – Softwareentwickler &middot; <a href="../lebenslauf.pdf" download class="footer-link">Lebenslauf als PDF</a></p>
+        </div>
+    </footer>
+
+    <script src="../app.js"></script>
+</body>
+</html>

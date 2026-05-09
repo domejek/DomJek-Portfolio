@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Dominik Jeksties | Softwareentwickler aus Hagen</title>
+    <meta name="description" content="Tech-Blog von Dominik Jeksties, Softwareentwickler aus Hagen. Tutorials und Case Studies zu PHP, Python, Monitoring, Grafana und Energiemarkt-Daten.">
+    <link rel="canonical" href="https://dominikjeksties.de/blog/">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../favicon.svg">
+    <meta property="og:title" content="Blog — Dominik Jeksties | Softwareentwickler aus Hagen">
+    <meta property="og:description" content="Tech-Blog mit Tutorials zu PHP, Python, Monitoring, Grafana und Energiemarkt-Daten.">
+    <meta property="og:url" content="https://dominikjeksties.de/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://dominikjeksties.de/images/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Dominik Jeksties | Softwareentwickler aus Hagen">
+    <meta name="twitter:description" content="Tech-Blog mit Tutorials zu PHP, Python, Monitoring, Grafana und Energiemarkt-Daten.">
+    <meta name="twitter:image" content="https://dominikjeksties.de/images/og-card.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Dominik Jeksties Blog",
+        "description": "Tech-Blog eines Softwareentwicklers aus Hagen",
+        "url": "https://dominikjeksties.de/blog/",
+        "author": {
+            "@type": "Person",
+            "name": "Dominik Jeksties"
+        }
+    }
+    </script>
+    <style>
+        .blog-header { text-align: center; padding: 5rem 0 3rem; }
+        .blog-header h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
+        .blog-header p { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .blog-posts { display: grid; gap: 2rem; max-width: 800px; margin: 0 auto; padding-bottom: 4rem; }
+        .blog-card { background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-md); overflow: hidden; transition: all 0.3s; border: 1px solid rgba(0,0,0,0.04); }
+        .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+        .blog-card-body { padding: 2rem; }
+        .blog-card .category-tag { display: inline-block; background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(14,165,233,0.1)); color: var(--primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.75rem; }
+        .blog-card h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--navy); }
+        .blog-card h2 a { color: var(--navy); text-decoration: none; }
+        .blog-card h2 a:hover { color: var(--primary-light); }
+        .blog-card p { color: var(--gray); line-height: 1.7; margin-bottom: 1rem; }
+        .blog-card .blog-meta { font-size: 0.85rem; color: var(--gray-light); }
+        .blog-card .blog-meta span { margin-right: 1rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../" style="text-decoration: none;"><div class="logo"><span>DJ</span> Portfolio</div></a>
+            <ul class="nav-links">
+                <li><a href="../#about">Über mich</a></li>
+                <li><a href="../#timeline">Werdegang</a></li>
+                <li><a href="../#tech">Tech Stack</a></li>
+                <li><a href="../#projects">Projekte</a></li>
+                <li><a href="./" style="color: var(--primary-light);">Blog</a></li>
+                <li><a href="../#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="blog-header">
+        <div class="container">
+            <h1>Blog</h1>
+            <p>Tutorials, Case Studies und Einblicke in meine Arbeit als Softwareentwickler</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container blog-posts">
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-card-body">
+                    <div class="category-tag">Python &bull; Datenvisualisierung</div>
+                    <h2><a href="energiemarkt-visualisierung-python-plotly.html">Energiemarkt-Daten mit Python &amp; Plotly visualisieren</a></h2>
+                    <p>Wie ich aFFR- und FCR-Werte des deutschen Energiemarkts mit Python, Pandas und Plotly automatisiert abfrage und visualisiere &ndash; inklusive Selenium-Automatisierung und Live-Dashboards.</p>
+                    <div class="blog-meta">
+                        <span>Mai 2026</span>
+                        <span>&middot; 5 Min. Lesezeit</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-card-body">
+                    <div class="category-tag">Monitoring &bull; Grafana</div>
+                    <h2><a href="batterie-container-monitoring-grafana-influxdb.html">Batterie-Container-Monitoring mit Grafana, InfluxDB &amp; Telegraf</a></h2>
+                    <p>Aufbau einer Monitoring-Infrastruktur f&uuml;r Batterie-Container: Von der Telegraf-Konfiguration &uuml;ber MQTT/Modbus-Integration bis zum aussagekr&auml;ftigen Grafana-Dashboard.</p>
+                    <div class="blog-meta">
+                        <span>Mai 2026</span>
+                        <span>&middot; 6 Min. Lesezeit</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-card-body">
+                    <div class="category-tag">PHP &bull; Grafana</div>
+                    <h2><a href="kimai-abwesenheiten-grafana-visualisieren.html">Kimai-Abwesenheiten in Grafana visualisieren</a></h2>
+                    <p>Wie ich die Kimai-API nutze, um Abwesenheiten aller Mitarbeiter in Grafana darzustellen &ndash; mit Wochenenden, Feiertagen und einer praktischen &Uuml;bersicht f&uuml;rs Team.</p>
+                    <div class="blog-meta">
+                        <span>Mai 2026</span>
+                        <span>&middot; 4 Min. Lesezeit</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Dominik Jeksties – Softwareentwickler &middot; <a href="../lebenslauf.pdf" download class="footer-link">Lebenslauf als PDF</a></p>
+        </div>
+    </footer>
+
+    <script src="../app.js"></script>
+</body>
+</html>

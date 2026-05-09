@@ -18,6 +18,8 @@ vendor/
 dist/
 build/
 /backend/.wrangler/
+/docs/*
+/frontend/images/*
 
 # IDE
 .vscode/

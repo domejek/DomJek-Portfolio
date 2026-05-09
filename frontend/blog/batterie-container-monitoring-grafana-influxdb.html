@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batterie-Container-Monitoring mit Grafana, InfluxDB & Telegraf — Dominik Jeksties</title>
+    <meta name="description" content="Case Study: Aufbau einer Monitoring-Infrastruktur für Batterie-Container mit Grafana, InfluxDB, Telegraf, MQTT und Modbus.">
+    <link rel="canonical" href="https://dominikjeksties.de/blog/batterie-container-monitoring-grafana-influxdb.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../favicon.svg">
+    <meta property="og:title" content="Batterie-Container-Monitoring mit Grafana, InfluxDB & Telegraf">
+    <meta property="og:description" content="Monitoring-Infrastruktur für Batterie-Container mit Telegraf, MQTT, Modbus und Grafana.">
+    <meta property="og:url" content="https://dominikjeksties.de/blog/batterie-container-monitoring-grafana-influxdb.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://dominikjeksties.de/images/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Batterie-Container-Monitoring mit Grafana, InfluxDB & Telegraf">
+    <meta name="twitter:description" content="Monitoring-Infrastruktur für Batterie-Container mit Telegraf, MQTT, Modbus und Grafana.">
+    <meta name="twitter:image" content="https://dominikjeksties.de/images/og-card.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Batterie-Container-Monitoring mit Grafana, InfluxDB & Telegraf",
+        "description": "Aufbau einer Monitoring-Infrastruktur für Batterie-Container.",
+        "author": { "@type": "Person", "name": "Dominik Jeksties" },
+        "datePublished": "2026-05-08",
+        "publisher": { "@type": "Person", "name": "Dominik Jeksties" }
+    }
+    </script>
+    <style>
+        .blog-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: white; padding: 4rem 0 3rem; }
+        .blog-header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; line-height: 1.3; margin-bottom: 1rem; }
+        .blog-header .blog-meta { color: var(--gray-light); font-size: 0.95rem; }
+        .blog-header .blog-meta span { margin-right: 1.5rem; }
+        .blog-content { max-width: 720px; margin: 0 auto; padding: 3rem 0 4rem; }
+        .blog-content h2 { font-size: 1.6rem; font-weight: 700; color: var(--navy); margin: 2.5rem 0 1rem; }
+        .blog-content h3 { font-size: 1.2rem; font-weight: 600; color: var(--navy); margin: 2rem 0 0.75rem; }
+        .blog-content p { color: var(--slate); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.05rem; }
+        .blog-content ul, .blog-content ol { color: var(--slate); line-height: 1.8; margin: 0 0 1.5rem 1.5rem; }
+        .blog-content li { margin-bottom: 0.5rem; }
+        .blog-content pre { background: var(--navy); color: #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); overflow-x: auto; font-size: 0.9rem; line-height: 1.6; margin: 1.5rem 0; }
+        .blog-content code { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9em; }
+        .blog-content p code { background: var(--light); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--primary); }
+        .blog-content .highlight-box { background: var(--light); border-left: 4px solid var(--primary-light); padding: 1.25rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 1.5rem 0; }
+        .blog-content .highlight-box p { margin-bottom: 0; font-size: 1rem; }
+        .blog-nav { max-width: 720px; margin: 0 auto; padding: 1.5rem 0 0; }
+        .blog-nav a { color: var(--gray); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .blog-nav a:hover { color: var(--primary-light); }
+        @media (max-width: 768px) {
+            .blog-header h1 { font-size: 1.8rem; }
+            .blog-content { padding: 2rem 0 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../" style="text-decoration: none;"><div class="logo"><span>DJ</span> Portfolio</div></a>
+            <ul class="nav-links">
+                <li><a href="../#about">Über mich</a></li>
+                <li><a href="../#timeline">Werdegang</a></li>
+                <li><a href="../#tech">Tech Stack</a></li>
+                <li><a href="../#projects">Projekte</a></li>
+                <li><a href="./">Blog</a></li>
+                <li><a href="../#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <div class="container">
+            <div class="blog-nav"><a href="./">&larr; Zur&uuml;ck zum Blog</a></div>
+            <h1>Batterie-Container-Monitoring mit Grafana, InfluxDB &amp; Telegraf</h1>
+            <div class="blog-meta">
+                <span>Mai 2026</span>
+                <span>&middot; 6 Min. Lesezeit</span>
+                <span>&middot; Grafana, InfluxDB, Telegraf, MQTT, Modbus</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="blog-content">
+        <p>
+            In meiner T&auml;tigkeit bei der Upside Consulting GmbH habe ich die Monitoring-Infrastruktur 
+            f&uuml;r Batterie-Container-Standorte ausgebaut und optimiert. In dieser Case Study zeige ich, 
+            wie wir mit Telegraf, MQTT, Modbus und der Grafana/InfluxDB-Kombination eine 
+            &uuml;ber 30 Standorte verteilte Infrastruktur &uuml;berwachen.
+        </p>
+
+        <h2>Die Herausforderung</h2>
+        <p>
+            Batterie-Container liefern eine Vielzahl von Echtzeit-Messwerten: Ladezustand, Temperatur, 
+            Wirk- und Blindleistung, Netzfrequenz und mehr. Diese Daten kommen &uuml;ber unterschiedliche 
+            Protokolle (Modbus TCP, MQTT) und m&uuml;ssen zentral gesammelt, normalisiert und visualisiert 
+            werden.
+        </p>
+
+        <h2>Die Architektur</h2>
+        <ul>
+            <li><strong>Telegraf</strong> als Datensammler auf jedem Standort-Rechner</li>
+            <li><strong>MQTT</strong> f&uuml;r die &Uuml;bertragung der Messwerte</li>
+            <li><strong>Modbus</strong> zur Anbindung von Wechselrichtern und Batterie-Management-Systemen</li>
+            <li><strong>InfluxDB</strong> als Time-Series-Datenbank f&uuml;r die Speicherung</li>
+            <li><strong>Grafana</strong> f&uuml;r Dashboards und Alarme</li>
+        </ul>
+
+        <h2>Telegraf-Konfiguration</h2>
+        <p>
+            Der zentrale Baustein ist die Telegraf-Konfiguration, die MQTT-Topics abonniert und in 
+            InfluxDB schreibt:
+        </p>
+
+<pre><code>[[inputs.mqtt_consumer]]
+  servers = ["tcp://mqtt-broker:1883"]
+  topics = ["battery/+/metrics"]
+  data_format = "json"
+  json_time_key = "timestamp"
+  json_time_format = "unix_ms"
+
+[[outputs.influxdb_v2]]
+  urls = ["http://influxdb:8086"]
+  token = "${INFLUX_TOKEN}"
+  organization = "energy"
+  bucket = "battery_monitoring"</code></pre>
+
+        <div class="highlight-box">
+            <p><strong>Wichtig:</strong> Die Modbus-Integration erfolgt &uuml;ber den Telegraf-Input-Plug-in <code>inputs.modbus</code>, der Register direkt von der SPS ausliest.</p>
+        </div>
+
+        <h2>Grafana-Dashboard</h2>
+        <p>
+            Das Haupt-Dashboard zeigt auf einen Blick den Status aller Standorte:
+        </p>
+        <ul>
+            <li>Karte mit Standort-&Uuml;bersicht und aktuellem Ladezustand</li>
+            <li>Zeitreihen-Diagramme f&uuml;r Leistung und Energiefl&uuml;sse</li>
+            <li>Alarm-Status und Benachrichtigungen bei Grenzwert&uuml;berschreitungen</li>
+            <li>Vergleichsansicht mehrerer Standorte nebeneinander</li>
+        </ul>
+
+        <h2>Lessons Learned</h2>
+        <ul>
+            <li>MQTT-QoS-Level 1 verhindert Datenverlust bei kurzen Netzausf&auml;llen</li>
+            <li>InfluxDB-Retention-Policies halten die Datenbankgr&ouml;&szlig;e kontrollierbar</li>
+            <li>Grafana-Alerts mit Webhook-Integration erm&ouml;glichen schnelle Reaktionszeiten</li>
+        </ul>
+
+        <p><em>Interesse an Monitoring-Infrastruktur? <a href="../#contact">Ich freue mich auf Ihre Nachricht</a>.</em></p>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Dominik Jeksties – Softwareentwickler &middot; <a href="../lebenslauf.pdf" download class="footer-link">Lebenslauf als PDF</a></p>
+        </div>
+    </footer>
+
+    <script src="../app.js"></script>
+</body>
+</html>

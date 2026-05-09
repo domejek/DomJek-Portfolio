@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimai-Abwesenheiten in Grafana visualisieren — Dominik Jeksties</title>
+    <meta name="description" content="Tutorial: Kimai-API nutzen, um Mitarbeiter-Abwesenheiten mit Wochenenden, Feiertagen und Urlaub in Grafana darzustellen.">
+    <link rel="canonical" href="https://dominikjeksties.de/blog/kimai-abwesenheiten-grafana-visualisieren.html">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../favicon.svg">
+    <meta property="og:title" content="Kimai-Abwesenheiten in Grafana visualisieren">
+    <meta property="og:description" content="Mitarbeiter-Abwesenheiten aus Kimai in Grafana-Dashboards darstellen.">
+    <meta property="og:url" content="https://dominikjeksties.de/blog/kimai-abwesenheiten-grafana-visualisieren.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://dominikjeksties.de/images/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kimai-Abwesenheiten in Grafana visualisieren">
+    <meta name="twitter:description" content="Mitarbeiter-Abwesenheiten aus Kimai in Grafana-Dashboards darstellen.">
+    <meta name="twitter:image" content="https://dominikjeksties.de/images/og-card.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Kimai-Abwesenheiten in Grafana visualisieren",
+        "description": "Kimai-API-Abfrage für Abwesenheiten mit Grafana-Dashboard.",
+        "author": { "@type": "Person", "name": "Dominik Jeksties" },
+        "datePublished": "2026-05-08",
+        "publisher": { "@type": "Person", "name": "Dominik Jeksties" }
+    }
+    </script>
+    <style>
+        .blog-header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: white; padding: 4rem 0 3rem; }
+        .blog-header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; line-height: 1.3; margin-bottom: 1rem; }
+        .blog-header .blog-meta { color: var(--gray-light); font-size: 0.95rem; }
+        .blog-header .blog-meta span { margin-right: 1.5rem; }
+        .blog-content { max-width: 720px; margin: 0 auto; padding: 3rem 0 4rem; }
+        .blog-content h2 { font-size: 1.6rem; font-weight: 700; color: var(--navy); margin: 2.5rem 0 1rem; }
+        .blog-content h3 { font-size: 1.2rem; font-weight: 600; color: var(--navy); margin: 2rem 0 0.75rem; }
+        .blog-content p { color: var(--slate); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.05rem; }
+        .blog-content ul { color: var(--slate); line-height: 1.8; margin: 0 0 1.5rem 1.5rem; }
+        .blog-content li { margin-bottom: 0.5rem; }
+        .blog-content pre { background: var(--navy); color: #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); overflow-x: auto; font-size: 0.9rem; line-height: 1.6; margin: 1.5rem 0; }
+        .blog-content code { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.9em; }
+        .blog-content p code { background: var(--light); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--primary); }
+        .blog-content .highlight-box { background: var(--light); border-left: 4px solid var(--primary-light); padding: 1.25rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 1.5rem 0; }
+        .blog-content .highlight-box p { margin-bottom: 0; font-size: 1rem; }
+        .blog-nav { max-width: 720px; margin: 0 auto; padding: 1.5rem 0 0; }
+        .blog-nav a { color: var(--gray); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .blog-nav a:hover { color: var(--primary-light); }
+        @media (max-width: 768px) {
+            .blog-header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../" style="text-decoration: none;"><div class="logo"><span>DJ</span> Portfolio</div></a>
+            <ul class="nav-links">
+                <li><a href="../#about">Über mich</a></li>
+                <li><a href="../#timeline">Werdegang</a></li>
+                <li><a href="../#tech">Tech Stack</a></li>
+                <li><a href="../#projects">Projekte</a></li>
+                <li><a href="./">Blog</a></li>
+                <li><a href="../#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <div class="container">
+            <div class="blog-nav"><a href="./">&larr; Zur&uuml;ck zum Blog</a></div>
+            <h1>Kimai-Abwesenheiten in Grafana visualisieren</h1>
+            <div class="blog-meta">
+                <span>Mai 2026</span>
+                <span>&middot; 4 Min. Lesezeit</span>
+                <span>&middot; PHP, Grafana, Kimai, API</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="blog-content">
+        <p>
+            Kimai ist ein weit verbreitetes Open-Source-Zeiterfassungstool. Was fehlt, ist eine 
+            komfortable &Uuml;bersicht &uuml;ber die Abwesenheiten aller Mitarbeiter. Deshalb habe ich 
+            das Repository <a href="https://github.com/domejek/Absences_Grafana_Kimai" target="_blank" rel="noopener nofollow">Absences_Grafana_Kimai</a> 
+            entwickelt &ndash; eine PHP-Br&uuml;cke zwischen der Kimai-API und Grafana.
+        </p>
+
+        <h2>Die Idee</h2>
+        <p>
+            Kimai speichert Abwesenheitszeiten (Urlaub, Krankheit, Fortbildung) als spezielle 
+            Zeiteintr&auml;ge. &Uuml;ber die REST-API lassen sich diese Daten abrufen und in ein 
+            f&uuml;r Grafana verarbeitbares Format bringen. Ziel war ein Dashboard, das auf einen 
+            Blick zeigt: Wer ist heute im Haus, wer ist abwesend und seit wann?
+        </p>
+
+        <h2>API-Integration</h2>
+        <p>
+            Die Kimai-API liefert Zeiteintr&auml;ge &uuml;ber einen einfachen REST-Endpunkt. 
+            Ein PHP-Skript aggregiert die Daten:
+        </p>
+
+<pre><code>&lt;?php
+$client = new \GuzzleHttp\Client([
+    'base_uri' => 'https://kimai-instanz/api/',
+    'auth' => [$apiUser, $apiKey]
+]);
+
+$response = $client->get('timesheets', [
+    'query' => ['project' => $absenceProjectId]
+]);
+
+$absences = json_decode($response->getBody(), true);</code></pre>
+
+        <h2>Grafana-Integration</h2>
+        <p>
+            Die aggregierten Daten werden als JSON-Endpunkt bereitgestellt, den Grafana &uuml;ber 
+            die "Simple JSON" oder "Infinity"-Datenquelle abfragen kann. Das Dashboard enth&auml;lt:
+        </p>
+        <ul>
+            <li>Eine Wochen&uuml;bersicht: Wer ist abwesend?</li>
+            <li>Eine Monats&uuml;bersicht mit Feiertagen</li>
+            <li>Eine Statistik: Krankheitstage pro Mitarbeiter im Jahresverlauf</li>
+        </ul>
+
+        <div class="highlight-box">
+            <p><strong>Repository:</strong> <a href="https://github.com/domejek/Absences_Grafana_Kimai" target="_blank" rel="noopener nofollow">github.com/domejek/Absences_Grafana_Kimai</a></p>
+        </div>
+
+        <p><em>Du nutzt auch Kimai und m&ouml;chtest ein solches Dashboard? <a href="../#contact">Ich unterst&uuml;tze gerne</a>.</em></p>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Dominik Jeksties – Softwareentwickler &middot; <a href="../lebenslauf.pdf" download class="footer-link">Lebenslauf als PDF</a></p>
+        </div>
+    </footer>
+
+    <script src="../app.js"></script>
+</body>
+</html>
