@@ -81,6 +81,37 @@ body {
     gap: 2rem;
 }
 
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gray-light);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 .nav-links a {
     color: var(--gray-light);
     text-decoration: none;
@@ -1116,9 +1147,40 @@ body {
 }
 
 @media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
     .nav-links {
-        gap: 1rem;
-        font-size: 0.85rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.98);
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .navbar {
+        position: relative;
     }
     
     .hero {
@@ -1163,9 +1225,33 @@ body {
         justify-content: center;
         margin-top: 1rem;
     }
+
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-role {
+        font-size: 1.05rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
     .hero-meta {
         flex-direction: column;
         align-items: center;
@@ -1179,6 +1265,8 @@ body {
     .btn-primary,
     .btn-secondary {
         justify-content: center;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
     }
     
     .contact-links {
@@ -1187,5 +1275,35 @@ body {
     
     .contact-button {
         justify-content: center;
+    }
+
+    .faq-question {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .faq-answer div {
+        padding: 0 1rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .about-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .about-stat {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .about-image-wrapper img {
+        height: 300px;
+    }
+
+    .photo-wrapper img {
+        width: 160px;
+        height: 160px;
     }
 }
