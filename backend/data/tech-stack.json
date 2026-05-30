@@ -7,7 +7,7 @@
     {
         "name": "Java & Quarkus",
         "category": "Backend",
-        "description": "Cloud-Native Java-Anwendungen mit Quarkus für schnelle Startup-Zeiten und geringen Speicherverbrauch."
+        "description": "Entwicklung cloud-nativer Java-Anwendungen mit Quarkus – REST-APIs, Microservices und schnelle Startup-Zeiten."
     },
     {
         "name": "Python",
