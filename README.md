@@ -58,6 +58,10 @@ DomJek-Portfolio/
 │   ├── configmap.yaml
 │   ├── backend-deployment.yaml
 │   └── backend-service.yaml
+├── scripts/
+│   ├── test-api.sh          # Endpoint-Tests (BASE_URL-konfigurierbar)
+│   └── test-ci.sh           # Lokaler CI-Durchlauf (wie GitHub Actions)
+├── justfile                 # Dev-/Test-Kommandos (just dev, just test, ...)
 ├── Dockerfile
 ├── deploy.sh
 └── README.md
@@ -199,6 +203,35 @@ kubectl delete namespace portfolio
 ```
 
 ---
+
+## Lokale Entwicklung & Tests (just)
+
+Einmalig:
+
+```bash
+brew install just
+cd backend && npm install
+```
+
+Danach alle Kommandos aus dem Projekt-Root:
+
+| Kommando | Beschreibung | URL |
+|----------|--------------|-----|
+| `just dev` | Full-Stack (Frontend + API) via Wrangler, Hot-Reload | http://localhost:8788 |
+| `just api` | Nur Backend-API (`node --watch`) | http://localhost:3000 |
+| `just test` | Lokaler CI-Durchlauf: startet Backend auf :3000, testet, stoppt | — |
+| `just test-suite` | Testet das gerade laufende Dev-System | — |
+| `just serve` | Statischer Server nur für das Frontend | http://localhost:4173 |
+| `just clean` | Beendet alle laufenden Dev-Prozesse | — |
+| `just setup` | Installiert Backend-Dependencies | — |
+
+So testest du lokal, ohne zu committen/pushen (`just test` entspricht dem GitHub-Actions-Job `ci.yml` → `test-backend`):
+
+```bash
+just test
+```
+
+Das überprüft `/health`, `/api/projects` und `/api/tech-stack` auf HTTP 200 und `"success": true`.
 
 ## Lokale Entwicklung (Docker)
 
