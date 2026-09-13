@@ -12,12 +12,6 @@
         "github": "https://github.com/domejek/Absences_Grafana_Kimai"
     },
     {
-        "name": "DomJek-QuarkusCalculator",
-        "description": "Berechnung von Mittelwert & Abweichung mit Quarkus. Speicherung der Ergebnisse in einer InfluxDB-Instanz.",
-        "technologies": ["Java", "Quarkus", "InfluxDB"],
-        "github": "https://github.com/domejek/DomJek-QuarkusCalculator"
-    },
-    {
         "name": "DomJek-LaravelREST",
         "description": "RESTful API mit Laravel. Vollständiges CRUD mit Authentifizierung und API-Ressourcen.",
         "technologies": ["PHP", "Laravel", "REST API", "MySQL"],

@@ -5,11 +5,6 @@
         "description": "Server-seitige Entwicklung mit PHP 8+, Laravel Framework und RESTful APIs."
     },
     {
-        "name": "Java & Quarkus",
-        "category": "Backend",
-        "description": "Entwicklung cloud-nativer Java-Anwendungen mit Quarkus – REST-APIs, Microservices und schnelle Startup-Zeiten."
-    },
-    {
         "name": "Python",
         "category": "Backend",
         "description": "Scripting, Automatisierung und Datenverarbeitung für DevOps-Workflows."

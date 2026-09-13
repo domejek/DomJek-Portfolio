@@ -35,3 +35,5 @@ Thumbs.db
 *.log
 npm-debug.log*
 .metadata/*
+.idea/*
+.wrangler/*
