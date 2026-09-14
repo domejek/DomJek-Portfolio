@@ -1,0 +1,133 @@
+export const meta = {
+  slug: 'energiemarkt-visualisierung-python-plotly',
+  title: 'Energiemarkt-Daten mit Python & Plotly visualisieren',
+  category: 'Python · Datenvisualisierung',
+  excerpt:
+    'Wie ich aFFR- und FCR-Werte des deutschen Energiemarkts mit Python, Pandas und Plotly automatisiert abfrage und visualisiere – inklusive Selenium-Automatisierung und Live-Dashboards.',
+  date: 'Mai 2026',
+  readTime: '5 Min. Lesezeit',
+  tags: ['Python', 'Pandas', 'Plotly', 'Selenium'],
+}
+
+Der deutsche Energiemarkt produziert täglich eine Vielzahl an Daten – von Regelenergiepreisen bis zu Netzfrequenzverläufen. In diesem Tutorial zeige ich, wie ich die aFFR (automatic Frequency Restoration Reserve) und FCR (Frequency Containment Reserve) Werte automatisiert abfrage und mit Python, Pandas und Plotly visualisiere.
+
+## Das Projekt im Überblick
+
+Das Repository [DomJek-Energiemarktdarstellung](https://github.com/domejek/DomJek-Energiemarktdarstellung) ist ein Python-Skript, das die aktuellen aFFR- und FCR-Werte des deutschen Energiemarkts von öffentlichen Quellen abruft und in aussagekräftige Diagramme verwandelt. Die Herausforderung: Die Daten liegen oft als unstrukturierte HTML-Tabellen vor und müssen erst geparst werden.
+
+## Technischer Stack
+
+- **Python 3** als Hauptsprache
+- **Pandas** zur Datenaufbereitung und -analyse
+- **Plotly** für interaktive Diagramme
+- **Selenium** zum automatisierten Abruf dynamischer Webinhalte
+
+## Schritt 1: Daten abrufen mit Selenium
+
+Die Energiemarkt-Daten werden auf Webseiten mit dynamisch nachgeladenen Inhalten bereitgestellt. Ein einfacher HTTP-Request reicht nicht aus – hier kommt Selenium ins Spiel:
+
+```python
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import pandas as pd
+
+def fetch_market_data(url):
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(options=options)
+    driver.get(url)
+
+    table = driver.find_element(By.TAG_NAME, 'table')
+    html = table.get_attribute('outerHTML')
+    df = pd.read_html(html)[0]
+
+    driver.quit()
+    return df
+```
+
+<div className="highlight-box">
+**Tipp:** Im Headless-Modus läuft Selenium auch auf Servern ohne grafische Oberfläche – ideal für automatisierte Cron-Jobs.
+</div>
+
+## Schritt 2: Datenbereinigung mit Pandas
+
+Die Rohdaten enthalten oft Spalten mit gemischten Datentypen, fehlenden Werten oder inkonsistenten Formatierungen. Pandas macht die Bereinigung einfach:
+
+```python
+def clean_data(df):
+    # Datumsspalte konvertieren
+    df['Datum'] = pd.to_datetime(df['Datum'], format='%d.%m.%Y')
+
+    # Numerische Spalten bereinigen
+    for col in ['aFFR (MW)', 'FCR (MW)', 'Preis (EUR/MW)']:
+        df[col] = df[col].str.replace('.', '')\
+                         .str.replace(',', '.')\
+                         .astype(float)
+
+    # Fehlende Werte interpolieren
+    df = df.interpolate(method='linear')
+
+    return df
+```
+
+## Schritt 3: Visualisierung mit Plotly
+
+Plotly erzeugt interaktive HTML-Diagramme, die sich hervorragend für Dashboards eignen. Hier ein Beispiel für eine Zeitreihen-Visualisierung:
+
+```python
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+def create_dashboard(df):
+    fig = make_subplots(
+        rows=2, cols=1,
+        subplot_titles=('aFFR & FCR Verlauf', 'Preisentwicklung'),
+        shared_xaxes=True
+    )
+
+    fig.add_trace(
+        go.Scatter(x=df['Datum'], y=df['aFFR (MW)'],
+                   name='aFFR', line=dict(color='#3b82f6')),
+        row=1, col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(x=df['Datum'], y=df['FCR (MW)'],
+                   name='FCR', line=dict(color='#0ea5e9')),
+        row=1, col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(x=df['Datum'], y=df['Preis (EUR/MW)'],
+                   name='Preis', line=dict(color='#10b981')),
+        row=2, col=1
+    )
+
+    fig.update_layout(
+        title='Energiemarkt-Daten',
+        template='plotly_white',
+        hovermode='x unified'
+    )
+
+    fig.write_html('dashboard.html')
+    return fig
+```
+
+## Schritt 4: Automatisierung
+
+Damit die Daten immer aktuell sind, läuft das Skript als Cron-Job:
+
+```bash
+# täglich um 8 Uhr aktualisieren
+0 8 * * * /usr/bin/python3 /pfad/zu/market_data.py
+```
+
+## Ergebnis
+
+Das fertige Dashboard zeigt auf einen Blick die Entwicklung der Regelenergie-Märkte. Die Kombination aus Selenium (dynamischer Datenabruf), Pandas (Datenbereinigung) und Plotly (Visualisierung) ergibt eine robuste Pipeline, die sich leicht auf andere Datenquellen übertragen lässt.
+
+<div className="highlight-box">
+**Repository:** [github.com/domejek/DomJek-Energiemarktdarstellung](https://github.com/domejek/DomJek-Energiemarktdarstellung)
+</div>
+
+*Du arbeitest an einem ähnlichen Projekt oder suchst Unterstützung bei Monitoring-Infrastruktur? Kontaktiere mich gerne.*

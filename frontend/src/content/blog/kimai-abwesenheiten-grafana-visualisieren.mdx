@@ -1,0 +1,47 @@
+export const meta = {
+  slug: 'kimai-abwesenheiten-grafana-visualisieren',
+  title: 'Kimai-Abwesenheiten in Grafana visualisieren',
+  category: 'PHP · Grafana',
+  excerpt:
+    'Wie ich die Kimai-API nutze, um Abwesenheiten aller Mitarbeiter in Grafana darzustellen – mit Wochenenden, Feiertagen und einer praktischen Übersicht fürs Team.',
+  date: 'Mai 2026',
+  readTime: '4 Min. Lesezeit',
+  tags: ['PHP', 'Grafana', 'Kimai', 'API'],
+}
+
+Kimai ist ein weit verbreitetes Open-Source-Zeiterfassungstool. Was fehlt, ist eine komfortable Übersicht über die Abwesenheiten aller Mitarbeiter. Deshalb habe ich das Repository [Absences_Grafana_Kimai](https://github.com/domejek/Absences_Grafana_Kimai) entwickelt – eine PHP-Brücke zwischen der Kimai-API und Grafana.
+
+## Die Idee
+
+Kimai speichert Abwesenheitszeiten (Urlaub, Krankheit, Fortbildung) als spezielle Zeiteinträge. Über die REST-API lassen sich diese Daten abrufen und in ein für Grafana verarbeitbares Format bringen. Ziel war ein Dashboard, das auf einen Blick zeigt: Wer ist heute im Haus, wer ist abwesend und seit wann?
+
+## API-Integration
+
+Die Kimai-API liefert Zeiteinträge über einen einfachen REST-Endpunkt. Ein PHP-Skript aggregiert die Daten:
+
+```php
+$client = new \GuzzleHttp\Client([
+    'base_uri' => 'https://kimai-instanz/api/',
+    'auth' => [$apiUser, $apiKey]
+]);
+
+$response = $client->get('timesheets', [
+    'query' => ['project' => $absenceProjectId]
+]);
+
+$absences = json_decode($response->getBody(), true);
+```
+
+## Grafana-Integration
+
+Die aggregierten Daten werden als JSON-Endpunkt bereitgestellt, den Grafana über die "Simple JSON" oder "Infinity"-Datenquelle abfragen kann. Das Dashboard enthält:
+
+- Eine Wochenübersicht: Wer ist abwesend?
+- Eine Monatsübersicht mit Feiertagen
+- Eine Statistik: Krankheitstage pro Mitarbeiter im Jahresverlauf
+
+<div className="highlight-box">
+**Repository:** [github.com/domejek/Absences_Grafana_Kimai](https://github.com/domejek/Absences_Grafana_Kimai)
+</div>
+
+*Du nutzt auch Kimai und möchtest ein solches Dashboard? Ich unterstütze gerne.*

@@ -1,0 +1,64 @@
+export const meta = {
+  slug: 'batterie-container-monitoring-grafana-influxdb',
+  title: 'Batterie-Container-Monitoring mit Grafana, InfluxDB & Telegraf',
+  category: 'Monitoring · Grafana',
+  excerpt:
+    'Aufbau einer Monitoring-Infrastruktur für Batterie-Container: Von der Telegraf-Konfiguration über MQTT/Modbus-Integration bis zum aussagekräftigen Grafana-Dashboard.',
+  date: 'Mai 2026',
+  readTime: '6 Min. Lesezeit',
+  tags: ['Grafana', 'InfluxDB', 'Telegraf', 'MQTT', 'Modbus'],
+}
+
+In meiner Tätigkeit bei der Upside Consulting GmbH habe ich die Monitoring-Infrastruktur für Batterie-Container-Standorte ausgebaut und optimiert. In dieser Case Study zeige ich, wie wir mit Telegraf, MQTT, Modbus und der Grafana/InfluxDB-Kombination eine über 30 Standorte verteilte Infrastruktur überwachen.
+
+## Die Herausforderung
+
+Batterie-Container liefern eine Vielzahl von Echtzeit-Messwerten: Ladezustand, Temperatur, Wirk- und Blindleistung, Netzfrequenz und mehr. Diese Daten kommen über unterschiedliche Protokolle (Modbus TCP, MQTT) und müssen zentral gesammelt, normalisiert und visualisiert werden.
+
+## Die Architektur
+
+- **Telegraf** als Datensammler auf jedem Standort-Rechner
+- **MQTT** für die Übertragung der Messwerte
+- **Modbus** zur Anbindung von Wechselrichtern und Batterie-Management-Systemen
+- **InfluxDB** als Time-Series-Datenbank für die Speicherung
+- **Grafana** für Dashboards und Alarme
+
+## Telegraf-Konfiguration
+
+Der zentrale Baustein ist die Telegraf-Konfiguration, die MQTT-Topics abonniert und in InfluxDB schreibt:
+
+```ini
+[[inputs.mqtt_consumer]]
+  servers = ["tcp://mqtt-broker:1883"]
+  topics = ["battery/+/metrics"]
+  data_format = "json"
+  json_time_key = "timestamp"
+  json_time_format = "unix_ms"
+
+[[outputs.influxdb_v2]]
+  urls = ["http://influxdb:8086"]
+  token = "${INFLUX_TOKEN}"
+  organization = "energy"
+  bucket = "battery_monitoring"
+```
+
+<div className="highlight-box">
+**Wichtig:** Die Modbus-Integration erfolgt über den Telegraf-Input-Plug-in `inputs.modbus`, der Register direkt von der SPS ausliest.
+</div>
+
+## Grafana-Dashboard
+
+Das Haupt-Dashboard zeigt auf einen Blick den Status aller Standorte:
+
+- Karte mit Standort-Übersicht und aktuellem Ladezustand
+- Zeitreihen-Diagramme für Leistung und Energieflüsse
+- Alarm-Status und Benachrichtigungen bei Grenzwertüberschreitungen
+- Vergleichsansicht mehrerer Standorte nebeneinander
+
+## Lessons Learned
+
+- MQTT-QoS-Level 1 verhindert Datenverlust bei kurzen Netzausfällen
+- InfluxDB-Retention-Policies halten die Datenbankgröße kontrollierbar
+- Grafana-Alerts mit Webhook-Integration ermöglichen schnelle Reaktionszeiten
+
+*Interesse an Monitoring-Infrastruktur? Ich freue mich auf Ihre Nachricht.*
