@@ -48,7 +48,7 @@ export function About() {
             />
             <div className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 gap-4">
               <div className="z-20 rounded-2xl border border-white/40 bg-white px-8 py-4 text-center shadow-lg">
-                <div className="text-3xl font-bold text-navy">2+</div>
+                <div className="text-3xl font-bold text-navy">3+</div>
                 <div className="text-sm text-gray">Jahre Erfahrung</div>
               </div>
               <div className="z-20 rounded-2xl border border-white/40 bg-white px-8 py-4 text-center shadow-lg">

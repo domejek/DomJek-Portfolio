@@ -4,7 +4,7 @@ import profileImage from '../assets/profile.webp';
 export const personal: PersonalInfo = {
   name: 'Dominik Jeksties',
   role: 'Softwareentwickler aus Hagen',
-  subtitle: 'Entwickler für PHP, JavaScript, Python, Monitoring · NRW',
+  subtitle: 'PHP, JavaScript, Python, Monitoring · NRW',
   location: 'Hagen, Deutschland',
   country: 'Deutschland',
   availability: 'Offen für neue Chancen und Herausforderungen',
