@@ -1,21 +1,21 @@
 # DomJek Portfolio
 
-Ein modernes, cloud-natives Portfolio-Projekt mit Kubernetes- und Cloudflare Workers-Deployment.
+Ein modernes, cloud-natives Portfolio-Projekt mit React-Frontend, Hono.js-Backend und Deployment über Docker sowie Cloudflare Workers.
 
 ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare%20Workers-Ready-F38020?logo=cloudflare&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-326CE5?logo=kubernetes&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20-339933?logo=node.js&logoColor=white)
 ![Hono](https://img.shields.io/badge/Hono.js-4.0-EE4266?logo=hono&logoColor=white)
 
 ## Features
 
-- Responsive Single-Page Portfolio
+- Responsive React Single-Page-Portfolio (Vite + TypeScript + Tailwind CSS v4)
+- Blog-Sektion mit MDX-Artikeln
 - RESTful Backend API (Hono.js)
 - Cloudflare Workers Deployment (Serverless)
-- Kubernetes-Orchestrierung (Optional)
-- Containerized mit Docker
-- Static Assets Serving direkt vom Worker
+- Containerized mit Docker (Nginx + Node.js)
+- Statische Assets direkt vom Worker ausgeliefert
 - GitHub Actions CI/CD
 
 ## Deployment-Optionen
@@ -23,18 +23,17 @@ Ein modernes, cloud-natives Portfolio-Projekt mit Kubernetes- und Cloudflare Wor
 | Platform | Beschreibung | Performance |
 |----------|-------------|-------------|
 | **Cloudflare Workers** | Serverless, Global Edge, Kostenlos bis 100k Requests/Tag | ⚡ Edge |
-| **Kubernetes** | Self-hosted, Kubernetes-Cluster | ☸️ Self-hosted |
-| **Docker** | Container, lokal oder Cloud | 🐳 Universal |
+| **Docker** | Container, lokal oder Cloud (GHCR) | 🐳 Universal |
 
 ## Tech Stack
 
 | Bereich | Technologien |
 |---------|-------------|
-| Frontend | HTML5, CSS3, JavaScript (Vanilla) |
+| Frontend | React 19, Vite 8, TypeScript, Tailwind CSS v4, React Router |
+| Blog | MDX (@mdx-js/rollup, @mdx-js/react) |
 | Backend | Node.js 20, Hono.js |
 | Serverless | Cloudflare Workers |
-| Container | Docker, Node.js |
-| Orchestrierung | Kubernetes (k8s) |
+| Container | Docker, Nginx |
 
 ## Projektstruktur
 
@@ -42,28 +41,31 @@ Ein modernes, cloud-natives Portfolio-Projekt mit Kubernetes- und Cloudflare Wor
 DomJek-Portfolio/
 ├── frontend/
 │   ├── index.html
-│   ├── styles.css
-│   └── app.js
+│   ├── vite.config.ts       # Dev-Proxy zu :3000, Tailwind, MDX
+│   ├── Dockerfile           # Multi-Stage Nginx-Image
+│   ├── nginx.conf           # SPA-Fallback + /api-Proxy
+│   └── src/
+│       ├── components/      # Layout, Sections, Blog, Projekte, UI
+│       ├── pages/           # HomePage, BlogList, BlogPost, ProjectDetail
+│       ├── content/blog/    # MDX-Artikel
+│       ├── data/            # Lokale Inhalte (Timeline, Skills, FAQ, ...)
+│       ├── lib/api.ts       # Hono-API-Client mit Fallbacks
+│       ├── hooks/           # useScrollAnimation, useMobileNav
+│       └── types/
 ├── backend/
-│   ├── server.js          # Hono.js Server
-│   ├── wrangler.jsonc     # Cloudflare Workers Config
-│   ├── .env               # Lokale Secrets
-│   ├── .env.example       # Template für Secrets
+│   ├── server.js            # Hono.js Server
+│   ├── local.js             # Node.js-Adapter (@hono/node-server)
+│   ├── wrangler.jsonc       # Cloudflare Workers Config
 │   ├── package.json
 │   └── data/
 │       ├── projects.json
 │       └── tech-stack.json
-├── k8s/
-│   ├── namespace.yaml
-│   ├── configmap.yaml
-│   ├── backend-deployment.yaml
-│   └── backend-service.yaml
+├── .github/workflows/       # CI, Cloudflare-Deploy, Docker-Publish
 ├── scripts/
 │   ├── test-api.sh          # Endpoint-Tests (BASE_URL-konfigurierbar)
-│   └── test-ci.sh           # Lokaler CI-Durchlauf (wie GitHub Actions)
+│   └── test-ci.sh           # Lokaler CI-Durchlauf
 ├── justfile                 # Dev-/Test-Kommandos (just dev, just test, ...)
-├── Dockerfile
-├── deploy.sh
+├── Dockerfile               # Kombiniertes Image (Nginx + Node.js)
 └── README.md
 ```
 
@@ -87,92 +89,36 @@ DomJek-Portfolio/
 ### Lokale Entwicklung
 
 ```bash
-cd backend
-
-# .env Datei erstellen
-cp .env.example .env
-# CLOUDFLARE_API_TOKEN=your_token_here
-
-# Abhängigkeiten installieren
-npm install
-
-# Lokaler Node.js Server (Port 3000)
-npm start
-
-# ODER: Cloudflare Worker simuliert (Port 8788)
-npm run dev:worker
+cd frontend && npm install && npm run dev   # Frontend: http://localhost:5173
+cd backend && npm install && npm start      # API: http://localhost:3000
 ```
+
+Der Vite-Dev-Server proxyt `/api`-Requests automatisch an `http://localhost:3000`.
 
 | Command | Beschreibung | Port |
 |---------|-------------|------|
-| `npm start` | Lokaler Node.js Server | 3000 |
-| `npm run dev:worker` | Wrangler Worker Dev | 8788 |
+| `frontend: npm run dev` | Vite Dev-Server | 5173 |
+| `backend: npm start` | Lokaler Node.js Server | 3000 |
+| `backend: npm run dev` | Node.js Server mit Watch-Modus | 3000 |
+| `backend: npm run dev:worker` | Wrangler Worker Dev | 8788 |
 
 ### Deployment
 
 ```bash
-# Cloudflare Workers deployen
-npx wrangler deploy
+cd frontend && npm run build   # erzeugt frontend/dist
+cd backend && npx wrangler deploy
 ```
+
+`wrangler.jsonc` bindet `frontend/dist` als Statics-Assets ein (`run_worker_first` für `/api/*`).
 
 ### GitHub Actions Setup
 
 1. **GitHub Secret hinzufügen:**
    - Repository → Settings → Secrets → Actions
    - `CLOUDFLARE_API_TOKEN` mit deinem Token erstellen
-
 2. **Automatisch deployen:**
    - Push auf `main` → Automatischer Deploy
    - Oder: Actions → "Deploy to Cloudflare Workers" → Run workflow
-
----
-
-## Kubernetes Deployment (Optional)
-
-### Voraussetzungen
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) mit Kubernetes
-- kubectl CLI
-- Git
-
-### Schnellstart
-
-```bash
-# Repository klonen
-git clone https://github.com/domejek/DomJek-Portfolio.git
-cd DomJek-Portfolio
-
-# Deployment starten
-./deploy.sh
-```
-
-Das Script führt automatisch aus:
-1. Prüft Docker & Kubernetes Status
-2. Baut die Docker Images
-3. Erstellt Kubernetes Ressourcen
-4. Startet Port-Forwarding
-
-Nach erfolgreichem Deployment:
-- Anwendung: http://localhost:8080
-
-### Kubernetes Ressourcen
-
-```bash
-# Pods anzeigen
-kubectl get pods -n portfolio
-
-# Services anzeigen
-kubectl get services -n portfolio
-
-# Logs ansehen
-kubectl logs -f <pod-name> -n portfolio
-
-# Alle Ressourcen
-kubectl get all -n portfolio
-
-# Namespace löschen
-kubectl delete namespace portfolio
-```
 
 ---
 
@@ -193,12 +139,13 @@ kubectl delete namespace portfolio
   "projects": [
     {
       "name": "DomJek-Portfolio",
-      "description": "Diese Portfolio-Webseite läuft auf Cloudflare Workers...",
-      "technologies": ["JavaScript", "Hono.js", "Cloudflare Workers"],
+      "slug": "domjek-portfolio",
+      "description": "Diese Portfolio-Webseite läuft als dockerisierte Microservices mit einem React/Nginx-Frontend und einer Node.js-API. Demonstriert Container-Deployment und moderne DevOps-Praktiken.",
+      "technologies": ["JavaScript", "React", "Node.js", "Docker", "Nginx", "Cloudflare Workers"],
       "github": "https://github.com/domejek/DomJek-Portfolio"
     }
   ],
-  "count": 6
+  "count": 4
 }
 ```
 
@@ -210,20 +157,21 @@ Einmalig:
 
 ```bash
 brew install just
-cd backend && npm install
+just setup
 ```
 
 Danach alle Kommandos aus dem Projekt-Root:
 
 | Kommando | Beschreibung | URL |
 |----------|--------------|-----|
-| `just dev` | Full-Stack (Frontend + API) via Wrangler, Hot-Reload | http://localhost:8788 |
+| `just dev` | Full-Stack (Vite-Frontend + API), Hot-Reload | http://localhost:5173 |
 | `just api` | Nur Backend-API (`node --watch`) | http://localhost:3000 |
+| `just frontend` | Nur Vite Dev-Server | http://localhost:5173 |
+| `just build` | Frontend-Produktions-Build | — |
 | `just test` | Lokaler CI-Durchlauf: startet Backend auf :3000, testet, stoppt | — |
 | `just test-suite` | Testet das gerade laufende Dev-System | — |
-| `just serve` | Statischer Server nur für das Frontend | http://localhost:4173 |
 | `just clean` | Beendet alle laufenden Dev-Prozesse | — |
-| `just setup` | Installiert Backend-Dependencies | — |
+| `just setup` | Installiert Backend- & Frontend-Dependencies | — |
 
 So testest du lokal, ohne zu committen/pushen (`just test` entspricht dem GitHub-Actions-Job `ci.yml` → `test-backend`):
 
@@ -233,15 +181,23 @@ just test
 
 Das überprüft `/health`, `/api/projects` und `/api/tech-stack` auf HTTP 200 und `"success": true`.
 
-## Lokale Entwicklung (Docker)
+---
+
+## Docker
+
+Das Root-`Dockerfile` baut ein kombiniertes Image (Nginx :80 + Node.js-API :3000) und ist Multi-Stage — es baut das React-Frontend selbst:
 
 ```bash
-cd backend
-npm install
-npm start
+docker build -t portfolio-backend:latest .
+docker run -p 8080:80 -p 3000:3000 portfolio-backend:latest
 ```
 
-Server läuft dann auf http://localhost:3000
+- Frontend: http://localhost:8080
+- API: http://localhost:8080/api/projects
+
+Das `frontend/Dockerfile` erzeugt zusätzlich ein reines Nginx-Image (nur das gebaute Frontend).
+
+Das Workflow `docker-publish.yml` baut und pusht außerdem `ghcr.io/<owner>/portfolio-backend:latest` zu GitHub Container Registry.
 
 ---
 
@@ -251,29 +207,15 @@ Das Projekt verwendet GitHub Actions für CI/CD:
 
 | Workflow | Trigger | Beschreibung |
 |----------|---------|--------------|
-| `ci.yml` | Push/PR auf main | Linting, Build & API Tests |
-| `docker-publish.yml` | Push auf main, Tags | Build & Push zu GHCR |
-| `kubernetes-deploy.yml` | Manual | Deploy zu K8s Cluster |
-| `cloudflare-deploy.yml` | Push auf main, Manual | Deploy zu Cloudflare Workers |
+| `ci.yml` | Push/PR auf main | Linting, TypeScript-Check, Build & API Tests |
+| `docker-publish.yml` | Manuell | Build & Push zu GHCR |
+| `cloudflare-deploy.yml` | Push auf main, Manuell | Deploy zu Cloudflare Workers |
 
 ### Setup für Cloudflare Deployment
 
 1. API Token erstellen (siehe oben)
 2. GitHub Secret `CLOUDFLARE_API_TOKEN` hinzufügen
 3. Push auf main → Automatischer Deploy
-
-### Setup für Kubernetes Deployment
-
-1. Kubeconfig als Secret speichern:
-   ```bash
-   cat ~/.kube/config | base64 | pbcopy
-   ```
-2. In GitHub: Settings → Secrets → Actions → `KUBE_CONFIG`
-
-### Manuell deployen
-
-1. GitHub → Actions → Workflow wählen
-2. "Run workflow"
 
 ---
 

@@ -1,47 +1,68 @@
 [
     {
         "name": "PHP & Laravel",
-        "category": "Backend",
-        "description": "Server-seitige Entwicklung mit PHP 8+, Laravel Framework und RESTful APIs."
+        "category": "Sprachen & Frameworks",
+        "description": "Server-seitige Entwicklung mit PHP 8+, Laravel Framework, Datenschnittstellen und Steuerungsprogramme.",
+        "level": 5
     },
     {
         "name": "Python",
-        "category": "Backend",
-        "description": "Scripting, Automatisierung und Datenverarbeitung für DevOps-Workflows."
+        "category": "Sprachen",
+        "description": "Scripting, Datenauswertung und Analysen für Monitoring-Workflows und Automatisierung.",
+        "level": 4
     },
     {
-        "name": "Docker",
-        "category": "DevOps",
-        "description": "Containerisierung von Anwendungen für konsistente Entwicklungs- und Produktionsumgebungen."
+        "name": "JavaScript & NodeJS",
+        "category": "Sprachen & Frameworks",
+        "description": "Frontend-Entwicklung, REST APIs und serverseitige Anwendungen mit NodeJS.",
+        "level": 4
     },
     {
-        "name": "Kubernetes",
-        "category": "DevOps",
-        "description": "Orchestrierung von containerisierten Anwendungen mit automatischer Skalierung und Load Balancing."
+        "name": "React & HTML/CSS",
+        "category": "Frontend",
+        "description": "Moderne Webanwendungen mit React Framework und responsive Design.",
+        "level": 4
+    },
+    {
+        "name": "PostgreSQL",
+        "category": "Datenbanken",
+        "description": "Betrieb und Optimierung mit Fokus auf Performance und Datenstabilität.",
+        "level": 5
+    },
+    {
+        "name": "InfluxDB & MySQL",
+        "category": "Datenbanken",
+        "description": "Time-Series Daten für Monitoring und relationale Datenbanken für Web-Anwendungen.",
+        "level": 4
     },
     {
         "name": "Grafana & Prometheus",
         "category": "Monitoring",
-        "description": "Monitoring und Visualisierung von Metriken. Dashboards für System- und Anwendungsüberwachung."
+        "description": "Monitoring-Infrastruktur mit Dashboards, Telegraf, MQTT und Modbus Integration.",
+        "level": 5
     },
     {
-        "name": "InfluxDB",
-        "category": "Database",
-        "description": "Time-Series Datenbank für Zeitreihendaten und Monitoring-Metriken."
+        "name": "Docker & Portainer",
+        "category": "DevOps",
+        "description": "Containerisierung und Management für konsistente Entwicklungs- und Produktionsumgebungen.",
+        "level": 4
     },
     {
-        "name": "PostgreSQL",
-        "category": "Database",
-        "description": "Objekt-relationale Datenbank mit erweiterten Features wie JSON-Support und Full-Text Search."
+        "name": "Linux/Ubuntu & Apache/Nginx",
+        "category": "DevOps",
+        "description": "Linux/Ubuntu-Server Administration und Webserver-Konfiguration.",
+        "level": 4
     },
     {
-        "name": "MySQL",
-        "category": "Database",
-        "description": "Relationale Datenbank für Web-Anwendungen, optimiert für Transaktionen und Replikation."
+        "name": "Kirby CMS & Frontend",
+        "category": "CMS & Frontend",
+        "description": "Headless/dateibasiertes CMS über Kirby, responsive Websites und Template-Entwicklung mit HTML/CSS/JavaScript.",
+        "level": 3
     },
     {
-        "name": "Git & GitHub",
+        "name": "Git & REST API",
         "category": "Tools",
-        "description": "Versionskontrolle, CI/CD mit GitHub Actions und kollaborative Softwareentwicklung."
+        "description": "Versionskontrolle, kollaborative Entwicklung und REST API Design.",
+        "level": 4
     }
 ]

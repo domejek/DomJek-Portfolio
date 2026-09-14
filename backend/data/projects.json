@@ -1,24 +1,28 @@
 [
     {
         "name": "DomJek-Portfolio",
-        "description": "Diese Portfolio-Webseite läuft auf einem Kubernetes-Cluster mit Frontend und Backend Microservices. Demonstriert Container-Orchestrierung und moderne DevOps-Praktiken.",
-        "technologies": ["JavaScript", "PHP", "Docker", "Kubernetes", "Nginx"],
+        "slug": "domjek-portfolio",
+        "description": "Diese Portfolio-Webseite läuft als dockerisierte Microservices mit einem React/Nginx-Frontend und einer Node.js-API. Demonstriert Container-Deployment und moderne DevOps-Praktiken.",
+        "technologies": ["JavaScript", "React", "Node.js", "Docker", "Nginx", "Cloudflare Workers"],
         "github": "https://github.com/domejek/DomJek-Portfolio"
     },
     {
         "name": "Absences Grafana Kimai",
+        "slug": "absences-grafana-kimai",
         "description": "Visualisierung der Abwesenheiten aller Benutzer mit Wochenenden, Krankheiten, Urlaub und Feiertagen aus dem Zeiterfassungstool Kimai.",
         "technologies": ["PHP", "Grafana", "Kimai", "API"],
         "github": "https://github.com/domejek/Absences_Grafana_Kimai"
     },
     {
         "name": "DomJek-LaravelREST",
+        "slug": "domjek-laravelrest",
         "description": "RESTful API mit Laravel. Vollständiges CRUD mit Authentifizierung und API-Ressourcen.",
         "technologies": ["PHP", "Laravel", "REST API", "MySQL"],
         "github": "https://github.com/domejek/DomJek-LaravelREST"
     },
     {
         "name": "DomJek-Energiemarktdarstellung",
+        "slug": "energiemarktdarstellung",
         "description": "Abfrage und Darstellung der aFFR & FCR Werte vom deutschen Energiemarkt. Echtzeitdaten und Visualisierung mit Python, Pandas und Plotly.",
         "technologies": ["Python", "Pandas", "Selenium", "Plotly", "Matplotlib"],
         "github": "https://github.com/domejek/DomJek-Energiemarktdarstellung"

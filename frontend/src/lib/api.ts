@@ -1,0 +1,35 @@
+import type { ProjectsResponse, TechItem, TechStackResponse } from '../types';
+
+const API_BASE = import.meta.env.VITE_API_BASE ?? '';
+
+async function fetchJson<T>(path: string): Promise<T> {
+  const res = await fetch(`${API_BASE}${path}`);
+  if (!res.ok) {
+    throw new Error(`API request failed: ${res.status} ${res.statusText}`);
+  }
+  return res.json() as Promise<T>;
+}
+
+export async function fetchProjects(): Promise<ProjectsResponse> {
+  return fetchJson<ProjectsResponse>('/api/projects');
+}
+
+export async function fetchTechStack(): Promise<TechStackResponse> {
+  return fetchJson<TechStackResponse>('/api/tech-stack');
+}
+
+const fallbackTechStack: TechItem[] = [
+  { name: 'PHP & Laravel', category: 'Sprachen & Frameworks', description: 'Server-seitige Entwicklung mit PHP 8+, Laravel Framework, Datenschnittstellen und Steuerungsprogramme.', level: 5 },
+  { name: 'Python', category: 'Sprachen', description: 'Scripting, Datenauswertung und Analysen für Monitoring-Workflows und Automatisierung.', level: 4 },
+  { name: 'JavaScript & NodeJS', category: 'Sprachen & Frameworks', description: 'Frontend-Entwicklung, REST APIs und serverseitige Anwendungen mit NodeJS.', level: 4 },
+  { name: 'React & HTML/CSS', category: 'Frontend', description: 'Moderne Webanwendungen mit React Framework und responsive Design.', level: 4 },
+  { name: 'PostgreSQL', category: 'Datenbanken', description: 'Betrieb und Optimierung mit Fokus auf Performance und Datenstabilität.', level: 5 },
+  { name: 'InfluxDB & MySQL', category: 'Datenbanken', description: 'Time-Series Daten für Monitoring und relationale Datenbanken für Web-Anwendungen.', level: 4 },
+  { name: 'Grafana & Prometheus', category: 'Monitoring', description: 'Monitoring-Infrastruktur mit Dashboards, Telegraf, MQTT und Modbus Integration.', level: 5 },
+  { name: 'Docker & Portainer', category: 'DevOps', description: 'Containerisierung und Management für konsistente Entwicklungs- und Produktionsumgebungen.', level: 4 },
+  { name: 'Linux/Ubuntu & Apache/Nginx', category: 'DevOps', description: 'Linux/Ubuntu-Server Administration und Webserver-Konfiguration.', level: 4 },
+  { name: 'Kirby CMS & Frontend', category: 'CMS & Frontend', description: 'Headless/dateibasiertes CMS über Kirby, responsive Websites und Template-Entwicklung mit HTML/CSS/JavaScript.', level: 3 },
+  { name: 'Git & REST API', category: 'Tools', description: 'Versionskontrolle, kollaborative Entwicklung und REST API Design.', level: 4 },
+];
+
+export { fallbackTechStack };
