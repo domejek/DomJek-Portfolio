@@ -2,7 +2,7 @@ import type { TimelineEntry } from '../types';
 
 export const timeline: TimelineEntry[] = [
   {
-    date: '07/2026 – 09/2026',
+    date: '07/2026 – aktuell',
     title: 'Full-Stack Entwickler',
     company: 'Centeo GmbH & Co. KG (TELiAS Gruppe)',
     descriptions: [
