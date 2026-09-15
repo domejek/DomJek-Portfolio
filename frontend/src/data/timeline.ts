@@ -2,12 +2,12 @@ import type { TimelineEntry } from '../types';
 
 export const timeline: TimelineEntry[] = [
   {
-    date: '07/2026 – 09/2026',
+    date: '07/2026 – aktuell',
     title: 'Full-Stack Entwickler',
-    company: 'Centeo GmbH & Co. KG (TELiAS Gruppe)',
+    company: 'Centeo GmbH & Co. KG',
     descriptions: [
       'Effizienzsteigerung der Kundenbesuchsbearbeitung (Postbearbeitung) um 30 % durch Entwicklung eines neuen Besucherbereichs.',
-      'Umsetzung von Responsive Design für die TELiAS-Webseite sowie Kommunikation und Projektplanung zwischen Unternehmen und externem Dienstleister.',
+      'Umsetzung von Responsive Design für die Webseite sowie Kommunikation und Projektplanung zwischen Unternehmen und externem Dienstleister.',
     ],
     techTags: ['PHP', 'Laravel', 'JavaScript', 'HTML', 'CSS', 'Docker', 'PostgreSQL', 'Ubuntu', 'Kirby CMS'],
   },
