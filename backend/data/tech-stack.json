@@ -48,7 +48,7 @@
         "level": 4
     },
     {
-        "name": "Linux/Ubuntu & Apache/Nginx",
+        "name": "Linux & Apache/Nginx",
         "category": "DevOps",
         "description": "Linux/Ubuntu-Server Administration und Webserver-Konfiguration.",
         "level": 4
@@ -60,7 +60,7 @@
         "level": 3
     },
     {
-        "name": "Git & REST API",
+        "name": "GitHub/GitLab & REST API",
         "category": "Tools",
         "description": "Versionskontrolle, kollaborative Entwicklung und REST API Design.",
         "level": 4
