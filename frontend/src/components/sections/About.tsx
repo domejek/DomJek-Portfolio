@@ -10,10 +10,10 @@ export function About() {
   return (
     <section id="about" className="py-20 md:py-24">
       <div className="container" ref={ref}>
-        <SectionTitle title="Über mich" subtitle="Wer ich bin und was mich antreibt" />
+        <SectionTitle title="Wer ich bin und was mich antreibt" kicker="Über mich" />
         <div className="grid gap-12 lg:grid-cols-2 md:gap-16">
           <div className="animate-on-scroll">
-            <h3 className="mb-4 text-xl font-bold text-navy md:text-2xl">
+            <h3 className="mb-4 font-serif text-xl font-semibold leading-snug text-navy md:text-2xl">
               Softwareentwickler für Full-Stack-Entwicklung – Frontend &amp; Backend
             </h3>
             <p className="mb-4 leading-relaxed text-gray">
@@ -30,29 +30,31 @@ export function About() {
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {aboutHighlights.map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <Icon name="check" width={20} height={20} className="text-success" />
+                  <Icon name="check" width={18} height={18} className="shrink-0 text-success" />
                   <span className="text-navy">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="animate-on-scroll relative mx-auto max-w-fit">
-            <img
-              src={personalImage}
-              alt="Dominik Jeksties - Softwareentwickler für Backend & Monitoring"
-              loading="lazy"
-              width={400}
-              height={400}
-              className="relative z-10 mx-auto block h-52 w-52 rounded-full object-cover object-top shadow-xl sm:h-60 sm:w-60 md:h-72 md:w-72"
-            />
-            <div className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 gap-4">
-              <div className="z-20 rounded-2xl border border-white/40 bg-white px-8 py-4 text-center shadow-lg">
-                <div className="text-3xl font-bold text-navy">3+</div>
+          <div className="animate-on-scroll flex flex-col items-center gap-6 lg:items-start">
+            <div className="relative">
+              <img
+                src={personalImage}
+                alt="Dominik Jeksties - Softwareentwickler für Backend & Monitoring"
+                loading="lazy"
+                width={400}
+                height={400}
+                className="relative z-10 block h-64 w-64 rounded-full border border-slate-200 object-cover object-top shadow-md-custom sm:h-72 sm:w-72"
+              />
+            </div>
+            <div className="grid w-full max-w-[340px] grid-cols-2 gap-4">
+              <div className="rounded-md border border-slate-200 bg-white px-6 py-4 text-center shadow-sm-custom">
+                <div className="font-serif text-2xl font-semibold text-navy">3+</div>
                 <div className="text-sm text-gray">Jahre Erfahrung</div>
               </div>
-              <div className="z-20 rounded-2xl border border-white/40 bg-white px-8 py-4 text-center shadow-lg">
-                <div className="text-3xl font-bold text-navy">100%</div>
+              <div className="rounded-md border border-slate-200 bg-white px-6 py-4 text-center shadow-sm-custom">
+                <div className="font-serif text-2xl font-semibold text-navy">100%</div>
                 <div className="text-sm text-gray">Engagement</div>
               </div>
             </div>
