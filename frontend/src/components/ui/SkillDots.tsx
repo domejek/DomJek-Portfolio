@@ -10,7 +10,7 @@ export function SkillDots({ level, total = 5 }: SkillDotsProps) {
         <span
           key={i}
           className={`h-2 w-2 rounded-full ${
-            i < level ? 'bg-primary-light' : 'bg-white/15'
+            i < level ? 'bg-primary' : 'bg-slate-200'
           }`}
         />
       ))}

@@ -13,20 +13,20 @@ export function FAQ() {
   return (
     <section id="faq" className="py-20 md:py-24">
       <div className="container" ref={ref}>
-        <SectionTitle title="Häufige Fragen" subtitle="Antworten auf die wichtigsten Fragen rund um meine Arbeit" />
+        <SectionTitle title="Antworten auf die wichtigsten Fragen" kicker="Details" />
         <div className="mx-auto max-w-[700px]">
           {faqItems.map((item, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={item.question}
-                className="animate-on-scroll mb-3 overflow-hidden rounded-lg border border-black/5 transition-shadow hover:shadow-sm"
+                className="animate-on-scroll mb-3 overflow-hidden rounded-md border border-slate-200 transition-shadow hover:shadow-sm-custom"
               >
                 <button
                   type="button"
                   onClick={() => toggle(index)}
                   aria-expanded={isOpen}
-                  className="flex w-full cursor-pointer items-center justify-between gap-4 bg-white p-5 text-left text-base font-semibold text-navy transition-colors hover:bg-light"
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 bg-white p-5 text-left text-base font-semibold text-navy transition-colors hover:bg-slate-50"
                 >
                   {item.question}
                   <Icon

@@ -1,28 +1,23 @@
 interface SectionTitleProps {
   title: string;
   subtitle?: string;
-  dark?: boolean;
+  kicker?: string;
 }
 
-export function SectionTitle({ title, subtitle, dark }: SectionTitleProps) {
+export function SectionTitle({ title, subtitle, kicker }: SectionTitleProps) {
   return (
-    <div>
-      <h2
-        className={`text-center text-3xl font-bold tracking-tight md:text-4xl ${
-          dark ? 'text-white' : 'text-navy'
-        }`}
-      >
+    <div className="mb-10">
+      {kicker && (
+        <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+          {kicker}
+        </span>
+      )}
+      <h2 className="font-serif text-3xl font-semibold leading-tight tracking-tight text-navy md:text-4xl">
         {title}
-        <span className="mx-auto mt-3 block h-[3px] w-[50px] rounded-full bg-gradient-to-r from-primary-light to-accent" />
       </h2>
+      <div className="mt-4 h-px w-12 bg-primary" />
       {subtitle && (
-        <p
-          className={`mx-auto mt-4 mb-12 max-w-[600px] text-center text-lg ${
-            dark ? 'text-gray-light' : 'text-gray'
-          }`}
-        >
-          {subtitle}
-        </p>
+        <p className="mt-4 max-w-[620px] text-lg leading-relaxed text-gray">{subtitle}</p>
       )}
     </div>
   );

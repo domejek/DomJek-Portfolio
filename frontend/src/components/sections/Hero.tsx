@@ -17,31 +17,24 @@ export function Hero() {
   };
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-br from-navy to-navy-light py-20 text-white md:py-24">
-      <div className="pointer-events-none absolute -top-1/2 -right-1/5 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.15),transparent_70%)]" />
-      <div className="container relative z-10 grid items-center gap-8 md:grid-cols-[1fr_300px] md:gap-16">
+    <header className="relative overflow-hidden border-b border-white/10 bg-navy py-20 text-white md:py-24">
+      <div className="container grid items-center gap-12 md:grid-cols-[1fr_320px] md:gap-16">
         <div className="animate-fade-in-left">
-          <h1 className="mb-2 text-4xl font-extrabold leading-tight md:text-[2.8rem]">
-            <span className="text-primary-light">{personal.name}</span> — {personal.role}
+          <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-gray-light">
+            {personal.role}
+          </span>
+          <h1 className="mb-3 font-serif text-4xl font-semibold leading-tight text-white md:text-[3rem]">
+            {personal.name}
           </h1>
           <h2 className="mb-6 text-xl font-medium text-gray-light md:text-2xl">{personal.subtitle}</h2>
 
-          <div className="mb-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-light md:text-base">
-            {heroMeta.map((item) => (
-              <div key={item.icon} className="flex items-center gap-2">
-                <Icon name={item.icon} width={18} height={18} className="shrink-0 text-primary-light" />
-                <span>{item.content}</span>
-              </div>
-            ))}
-          </div>
-
-          <p className="mb-8 max-w-[620px] leading-relaxed">{personal.description}</p>
+          <p className="mb-8 max-w-[620px] leading-relaxed text-white/80">{personal.description}</p>
 
           <div className="flex flex-wrap gap-4">
             <button
               type="button"
               onClick={scrollTo('projects')}
-              className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-primary-light px-7 py-3.5 text-base font-semibold text-white no-underline transition-all hover:-translate-y-0.5 hover:bg-primary hover:shadow-[0_8px_24px_rgba(59,130,246,0.4)]"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-md bg-primary-light px-6 py-3 text-base font-semibold text-white no-underline transition-colors hover:bg-primary"
             >
               <Icon name="github" width={18} height={18} />
               Projekte ansehen
@@ -49,7 +42,7 @@ export function Hero() {
             <a
               href={personal.resumePdf}
               download
-              className="inline-flex items-center gap-2 rounded-lg border-2 border-white/30 px-7 py-3.5 text-base font-semibold text-white no-underline transition-all hover:border-white hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-md border border-white/30 px-6 py-3 text-base font-semibold text-white no-underline transition-colors hover:border-white hover:bg-white/10"
             >
               <Icon name="download" width={18} height={18} />
               Lebenslauf (PDF)
@@ -60,22 +53,31 @@ export function Hero() {
                 e.preventDefault();
                 setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 50);
               }}
-              className="inline-flex items-center gap-2 rounded-lg border-2 border-white/30 px-7 py-3.5 text-base font-semibold text-white no-underline transition-all hover:border-white hover:bg-white/10"
+              className="inline-flex items-center gap-2 border-b border-white/30 py-3 text-base font-medium text-white/85 no-underline transition-colors hover:border-white hover:text-white"
             >
               Kontakt aufnehmen
             </Link>
           </div>
+
+          <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-6 text-sm text-gray-light">
+            {heroMeta.map((item) => (
+              <div key={item.icon} className="flex items-center gap-2">
+                <Icon name={item.icon} width={16} height={16} className="shrink-0 text-primary-light" />
+                <span>{item.content}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="animate-fade-in-right flex justify-center">
+        <div className="animate-fade-in-right flex justify-center md:justify-end">
           <div className="relative">
-            <div className="absolute inset-[-8px] rounded-full bg-gradient-to-br from-primary-light to-accent opacity-50 blur-xl" />
+            <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-xl border border-primary-light/40" />
             <img
               src={personal.profileImage}
               alt="Dominik Jeksties am Schreibtisch, Softwareentwickler aus Hagen"
-              className="relative z-10 h-[260px] w-[260px] rounded-full border-4 border-white/20 object-cover shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
-              width={260}
-              height={260}
+              className="relative z-10 h-[300px] w-[270px] rounded-xl border border-white/15 object-cover object-top"
+              width={270}
+              height={300}
             />
           </div>
         </div>

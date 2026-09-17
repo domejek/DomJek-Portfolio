@@ -10,7 +10,7 @@ export function BlogPost() {
   if (!post) {
     return (
       <div className="container py-20 text-center">
-        <h1 className="mb-4 text-3xl font-bold text-navy">Beitrag nicht gefunden</h1>
+        <h1 className="mb-4 font-serif text-3xl font-semibold text-navy">Beitrag nicht gefunden</h1>
         <p className="mb-6 text-gray">
           Der gesuchte Blog-Beitrag existiert nicht oder wurde verschoben.
         </p>
@@ -25,13 +25,13 @@ export function BlogPost() {
 
   return (
     <div>
-      <header className="bg-gradient-to-br from-navy to-navy-light py-12 text-white">
+      <header className="bg-navy py-12 text-white">
         <div className="container">
           <div className="mx-auto max-w-[720px]">
             <Link to="/blog" className="mb-4 inline-block text-[0.95rem] font-medium text-gray-light no-underline hover:text-primary-light">
               &larr; Zurück zum Blog
             </Link>
-            <h1 className="mb-4 text-3xl font-extrabold leading-tight md:text-4xl">{meta.title}</h1>
+            <h1 className="mb-4 font-serif text-3xl font-semibold leading-tight md:text-4xl">{meta.title}</h1>
             <div className="text-sm text-gray-light">
               <span>{meta.date}</span>
               <span className="ml-6">· {meta.readTime}</span>

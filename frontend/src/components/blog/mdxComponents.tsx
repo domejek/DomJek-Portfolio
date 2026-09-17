@@ -9,8 +9,8 @@ const inlineCodeClass =
 
 const pClass = 'mb-5 leading-relaxed text-slate';
 
-const h2Class = 'mb-4 mt-10 text-2xl font-bold text-navy';
-const h3Class = 'mb-3 mt-8 text-xl font-semibold text-navy';
+const h2Class = 'mb-4 mt-10 font-serif text-2xl font-semibold text-navy';
+const h3Class = 'mb-3 mt-8 font-serif text-xl font-semibold text-navy';
 
 const ulClass = 'mb-6 ml-6 list-disc leading-relaxed text-slate';
 const olClass = 'mb-6 ml-6 list-decimal leading-relaxed text-slate';

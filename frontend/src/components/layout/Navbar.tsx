@@ -34,13 +34,13 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-navy/95 px-0 py-4 shadow-[0_2px_20px_rgba(0,0,0,0.1)] backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 px-0 py-4 backdrop-blur-md">
       <div className="container flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 text-2xl font-bold tracking-tight text-white no-underline">
-          <span className="bg-gradient-to-br from-primary-light to-accent bg-clip-text text-transparent">
+        <Link to="/" className="flex items-center gap-3 text-xl font-bold tracking-tight text-white no-underline">
+          <span className="flex h-9 w-9 items-center justify-center rounded-md border border-white/20 font-serif text-lg font-semibold">
             DJ
           </span>{' '}
-          Portfolio
+          <span className="hidden font-serif font-semibold sm:inline">Dominik Jeksties</span>
         </Link>
 
         <button

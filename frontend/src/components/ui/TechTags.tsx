@@ -5,7 +5,7 @@ export function TechTags({ tags }: { tags: string[] }) {
       {tags.map((tag) => (
         <span
           key={tag}
-          className="rounded-full bg-gradient-to-br from-primary-light/10 to-accent/10 px-3.5 py-1.5 text-[0.8rem] font-medium text-primary"
+          className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-[0.8rem] font-medium text-slate"
         >
           {tag}
         </span>

@@ -47,34 +47,33 @@ export function TechStack() {
     : items;
 
   return (
-    <section id="tech" className="bg-navy py-20 text-white md:py-24">
+    <section id="tech" className="bg-lighter py-20 md:py-24">
       <div className="container" ref={ref}>
         <SectionTitle
-          title="Tech Stack"
-          subtitle="Technologien und Tools, die ich täglich einsetze"
-          dark
+          title="Technologien und Tools, die ich täglich einsetze"
+          kicker="Tech Stack"
         />
         {error && !loading && (
-          <p className="mb-4 text-center text-sm text-gray-light">Hinweis: {error} – zeige lokale Daten.</p>
+          <p className="mb-4 text-sm text-gray">Hinweis: {error} – zeige lokale Daten.</p>
         )}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {displayItems.map((item) => (
             <div
               key={item.name}
-              className="animate-on-scroll rounded-xl border border-white/8 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary-light hover:bg-white/10 hover:shadow-[0_12px_40px_rgba(59,130,246,0.15)]"
+              className="animate-on-scroll rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-primary-light/60"
             >
               <div className="mb-4 flex items-center gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary-light to-accent">
-                  <Icon name="code" width={22} height={22} className="text-white" />
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary/10">
+                  <Icon name="code" width={22} height={22} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg text-white">{item.name}</h3>
-                  <div className="text-[0.8rem] font-semibold tracking-wide text-accent uppercase">
+                  <h3 className="text-lg font-semibold text-navy">{item.name}</h3>
+                  <div className="text-[0.8rem] font-semibold tracking-wide text-primary/70 uppercase">
                     {item.category}
                   </div>
                 </div>
               </div>
-              <p className="mb-4 text-sm leading-relaxed text-white/70">{item.description}</p>
+              <p className="mb-4 text-sm leading-relaxed text-gray">{item.description}</p>
               {item.level != null && <SkillDots level={item.level} />}
             </div>
           ))}
