@@ -7,7 +7,7 @@ export const timeline: TimelineEntry[] = [
     company: 'Centeo GmbH & Co. KG (TELiAS Gruppe), Köln',
     descriptions: [
       'Effizienzsteigerung der Kundenbesuchsbearbeitung (Postbearbeitung) um 30 % durch Entwicklung eines neuen Besucherbereichs.',
-      'Umsetzung von Responsive Design für die TELiAS-Webseite sowie Kommunikation und Projektplanung zwischen Unternehmen und externem Dienstleister.',
+      'Umsetzung von Responsive Design für die Webseite sowie Kommunikation und Projektplanung zwischen Unternehmen und externem Dienstleister.',
     ],
     techTags: ['PHP', 'Laravel', 'JavaScript', 'HTML', 'Tailwind CSS', 'Docker', 'PostgreSQL', 'Ubuntu', 'Kirby CMS', 'Scrum'],
   },
