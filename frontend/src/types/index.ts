@@ -36,6 +36,18 @@ export interface SoftSkill {
   description: string;
 }
 
+export interface VolunteeringHighlight {
+  title: string;
+  description: string;
+}
+
+export interface Volunteering {
+  icon: string;
+  title: string;
+  description: string;
+  highlights: VolunteeringHighlight[];
+}
+
 export interface TechItem {
   name: string;
   category: string;

@@ -7,6 +7,7 @@ import { QuickFacts } from '../components/sections/QuickFacts';
 import { SoftSkills } from '../components/sections/SoftSkills';
 import { TechStack } from '../components/sections/TechStack';
 import { Timeline } from '../components/sections/Timeline';
+import { Volunteering } from '../components/sections/Volunteering';
 
 export function HomePage() {
   return (
@@ -16,6 +17,7 @@ export function HomePage() {
       <About />
       <Timeline />
       <SoftSkills />
+      <Volunteering />
       <TechStack />
       <Projects />
       <FAQ />

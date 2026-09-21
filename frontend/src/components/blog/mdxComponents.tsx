@@ -2,15 +2,15 @@ import type { ComponentProps } from 'react';
 import { HighlightBox } from './HighlightBox';
 
 const preClass =
-  'my-6 overflow-x-auto rounded-lg bg-navy p-5 text-sm leading-relaxed text-slate-100';
+  'my-6 overflow-x-auto rounded-lg border border-slate-200 bg-lighter p-5 text-sm leading-relaxed text-slate';
 
 const inlineCodeClass =
-  'rounded bg-light px-1.5 py-0.5 font-mono text-sm text-primary';
+  'rounded bg-light px-1.5 py-0.5 font-mono text-sm text-primary-dark';
 
 const pClass = 'mb-5 leading-relaxed text-slate';
 
-const h2Class = 'mb-4 mt-10 font-serif text-2xl font-semibold text-navy';
-const h3Class = 'mb-3 mt-8 font-serif text-xl font-semibold text-navy';
+const h2Class = 'mb-4 mt-10 font-display text-2xl font-semibold text-navy';
+const h3Class = 'mb-3 mt-8 font-display text-xl font-semibold text-navy';
 
 const ulClass = 'mb-6 ml-6 list-disc leading-relaxed text-slate';
 const olClass = 'mb-6 ml-6 list-decimal leading-relaxed text-slate';

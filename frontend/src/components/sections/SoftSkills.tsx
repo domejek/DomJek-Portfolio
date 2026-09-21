@@ -14,7 +14,7 @@ export function SoftSkills() {
           {softSkills.map((skill) => (
             <div
               key={skill.title}
-              className="animate-on-scroll rounded-lg border border-slate-200 bg-white p-8 shadow-sm-custom transition-colors hover:border-primary-light/60"
+              className="animate-on-scroll rounded-lg border border-slate-200 bg-white p-8 shadow-sm-custom transition-all hover:-translate-y-0.5 hover:border-primary-light/60 hover:shadow-md-custom"
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-primary/10">
                 <Icon name={skill.icon as IconName} width={24} height={24} className="text-primary" />

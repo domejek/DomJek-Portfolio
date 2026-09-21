@@ -9,7 +9,7 @@ export function BlogList() {
     <div className="container py-8 pb-16" ref={ref}>
       <header className="mb-10 pb-8 pt-10">
         <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.2em] text-primary">Blog</span>
-        <h1 className="font-serif text-4xl font-semibold leading-tight tracking-tight text-navy md:text-[2.8rem]">
+        <h1 className="font-display text-4xl font-semibold leading-tight tracking-tight text-navy md:text-[2.8rem]">
           Tutorials, Case Studies &amp; Einblicke
         </h1>
         <div className="mt-4 h-px w-12 bg-primary" />
@@ -19,14 +19,14 @@ export function BlogList() {
         {blogPosts.map((post) => (
           <article
             key={post.meta.slug}
-            className="animate-on-scroll rounded-lg border border-slate-200 bg-white shadow-sm-custom transition-colors hover:border-primary-light/60"
+            className="animate-on-scroll rounded-lg border border-slate-200 bg-white shadow-sm-custom transition-all hover:-translate-y-0.5 hover:border-primary-light/60 hover:shadow-md-custom"
           >
             <div className="p-8">
               <span className="mb-3 inline-block rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[0.8rem] font-medium text-slate">
                 {post.meta.category}
               </span>
-              <h2 className="mb-3 font-serif text-2xl font-semibold leading-snug text-navy">
-                <Link to={`/blog/${post.meta.slug}`} className="no-underline hover:text-primary-light">
+              <h2 className="mb-3 font-display text-2xl font-semibold leading-snug text-navy">
+                <Link to={`/blog/${post.meta.slug}`} className="no-underline hover:text-primary">
                   {post.meta.title}
                 </Link>
               </h2>

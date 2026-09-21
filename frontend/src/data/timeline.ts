@@ -4,12 +4,12 @@ export const timeline: TimelineEntry[] = [
   {
     date: '07/2026 – aktuell',
     title: 'Full-Stack Entwickler',
-    company: 'Centeo GmbH & Co. KG',
+    company: 'Centeo GmbH & Co. KG (TELiAS Gruppe), Köln',
     descriptions: [
       'Effizienzsteigerung der Kundenbesuchsbearbeitung (Postbearbeitung) um 30 % durch Entwicklung eines neuen Besucherbereichs.',
       'Umsetzung von Responsive Design für die Webseite sowie Kommunikation und Projektplanung zwischen Unternehmen und externem Dienstleister.',
     ],
-    techTags: ['PHP', 'Laravel', 'JavaScript', 'HTML', 'CSS', 'Docker', 'PostgreSQL', 'Ubuntu', 'Kirby CMS'],
+    techTags: ['PHP', 'Laravel', 'JavaScript', 'HTML', 'Tailwind CSS', 'Docker', 'PostgreSQL', 'Ubuntu', 'Kirby CMS', 'Scrum'],
   },
   {
     date: '07/2024 – 02/2026',
@@ -19,7 +19,7 @@ export const timeline: TimelineEntry[] = [
       'Entwicklung und Pflege PHP-basierter Datenschnittstellen und Steuerungsprogramme inkl. automatisierter Tests und Dokumentation. Betrieb und Optimierung von PostgreSQL-Datenbanken mit Fokus auf Performance und Datenstabilität.',
       'Ausbau der Monitoring-Infrastruktur: Integration neuer Batterie-Container-Standorte in Grafana/InfluxDB via Telegraf, MQTT & Modbus. Python-Skripting zur Datenauswertung & Analysen.',
     ],
-    techTags: ['PHP', 'PostgreSQL', 'Python', 'Grafana', 'InfluxDB'],
+    techTags: ['PHP', 'JavaScript', 'PostgreSQL', 'Python', 'Pandas', 'Plotly', 'Grafana', 'InfluxDB', 'Telegraf', 'MQTT', 'Kanban'],
   },
   {
     date: '04/2021 – 06/2024',
@@ -27,7 +27,7 @@ export const timeline: TimelineEntry[] = [
     company: 'ISL Internet Sicherheitslösungen GmbH, Bochum',
     descriptions: [
       'Mit-Entwicklung der Engine des NAC-Produkts ARP-GUARD in Perl und JavaScript. Third-Level-Support für Netzwerksicherheitsprodukte.',
-      'Abschlussprojekt: Automatisiertes Netzwerkreport-System mit PDF-Generierung (PDF::API2), Diagrammerstellung (Gnuplot), E-Mail-Versand und Cron-basierter Planung auf PostgreSQL-Basis.',
+      'Abschlussprojekt: Automatisiertes Netzwerkreport-System mit PDF-Generierung, Diagrammerstellung, E-Mail-Versand und Cron-basierter Planung auf PostgreSQL-Basis.',
     ],
     techTags: ['Perl', 'JavaScript', 'PostgreSQL'],
   },

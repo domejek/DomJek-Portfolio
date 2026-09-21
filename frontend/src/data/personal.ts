@@ -17,7 +17,7 @@ export const personal: PersonalInfo = {
   resumePdf: '/lebenslauf.pdf',
   profileImage,
   description:
-    'Softwareentwickler mit Erfahrung in Backend-Systemen, Datenschnittstellen und Monitoring-Infrastrukturen. Fundierte Kenntnisse in PHP, Python und JavaScript — von der NAC-Engine, über Responsive Design und APIs bis zu Energiemarkt-Dashboards.',
+    'Softwareentwickler mit Erfahrung in Backend-Systemen, Frontend-Design, Datenverarbeitungen und Monitoring-Infrastrukturen.',
 };
 
 export const aboutHighlights: string[] = [

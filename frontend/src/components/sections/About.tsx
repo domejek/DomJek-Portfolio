@@ -13,7 +13,7 @@ export function About() {
         <SectionTitle title="Wer ich bin und was mich antreibt" kicker="Über mich" />
         <div className="grid gap-12 lg:grid-cols-2 md:gap-16">
           <div className="animate-on-scroll">
-            <h3 className="mb-4 font-serif text-xl font-semibold leading-snug text-navy md:text-2xl">
+            <h3 className="mb-4 font-display text-xl font-semibold leading-snug text-navy md:text-2xl">
               Softwareentwickler für Full-Stack-Entwicklung – Frontend &amp; Backend
             </h3>
             <p className="mb-4 leading-relaxed text-gray">
@@ -38,23 +38,21 @@ export function About() {
           </div>
 
           <div className="animate-on-scroll flex flex-col items-center gap-6 lg:items-start">
-            <div className="relative">
-              <img
-                src={personalImage}
-                alt="Dominik Jeksties - Softwareentwickler für Backend & Monitoring"
-                loading="lazy"
-                width={400}
-                height={400}
-                className="relative z-10 block h-64 w-64 rounded-full border border-slate-200 object-cover object-top shadow-md-custom sm:h-72 sm:w-72"
-              />
-            </div>
+            <img
+              src={personalImage}
+              alt="Dominik Jeksties - Softwareentwickler für Backend & Monitoring"
+              loading="lazy"
+              width={400}
+              height={400}
+              className="block h-64 w-64 rounded-full border border-slate-200 object-cover object-top shadow-md-custom sm:h-72 sm:w-72"
+            />
             <div className="grid w-full max-w-[340px] grid-cols-2 gap-4">
               <div className="rounded-md border border-slate-200 bg-white px-6 py-4 text-center shadow-sm-custom">
-                <div className="font-serif text-2xl font-semibold text-navy">3+</div>
+                <div className="font-display text-2xl font-semibold text-navy">3+</div>
                 <div className="text-sm text-gray">Jahre Erfahrung</div>
               </div>
               <div className="rounded-md border border-slate-200 bg-white px-6 py-4 text-center shadow-sm-custom">
-                <div className="font-serif text-2xl font-semibold text-navy">100%</div>
+                <div className="font-display text-2xl font-semibold text-navy">100%</div>
                 <div className="text-sm text-gray">Engagement</div>
               </div>
             </div>

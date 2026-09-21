@@ -26,7 +26,7 @@ export function FAQ() {
                   type="button"
                   onClick={() => toggle(index)}
                   aria-expanded={isOpen}
-                  className="flex w-full cursor-pointer items-center justify-between gap-4 bg-white p-5 text-left text-base font-semibold text-navy transition-colors hover:bg-slate-50"
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 bg-white p-5 text-left text-base font-semibold text-navy transition-colors hover:bg-lighter"
                 >
                   {item.question}
                   <Icon
