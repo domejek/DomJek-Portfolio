@@ -12,7 +12,7 @@ export function SectionTitle({ title, subtitle, kicker }: SectionTitleProps) {
           {kicker}
         </span>
       )}
-      <h2 className="font-serif text-3xl font-semibold leading-tight tracking-tight text-navy md:text-4xl">
+      <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-navy md:text-4xl">
         {title}
       </h2>
       <div className="mt-4 h-px w-12 bg-primary" />

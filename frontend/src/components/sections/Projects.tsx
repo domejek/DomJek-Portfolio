@@ -73,13 +73,13 @@ export function Projects() {
           {display.map((project) => (
             <div
               key={project.name}
-              className="animate-on-scroll flex flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-sm-custom transition-colors hover:border-primary-light/60 md:p-7"
+              className="animate-on-scroll group flex flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-sm-custom transition-all hover:-translate-y-0.5 hover:border-primary-light/60 hover:shadow-md-custom md:p-7"
             >
               <div className="mb-4 flex items-center gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary/10">
                   <Icon name="code" width={24} height={24} className="text-primary" />
                 </div>
-                <h3 className="font-serif text-xl font-semibold leading-snug text-navy">{project.name}</h3>
+                <h3 className="font-display text-xl font-semibold leading-snug text-navy">{project.name}</h3>
               </div>
               <p className="mb-5 flex-1 leading-relaxed text-gray">{project.description}</p>
               <TechTags tags={project.technologies} />
@@ -88,7 +88,7 @@ export function Projects() {
                   href={project.github}
                   target="_blank"
                   rel="noopener nofollow"
-                  className="group inline-flex items-center gap-2 font-semibold text-primary no-underline transition-colors hover:text-primary-dark"
+                  className="group inline-flex items-center gap-2 font-semibold text-primary no-underline transition-colors hover:text-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   <Icon name="github" width={16} height={16} />
                   Auf GitHub ansehen

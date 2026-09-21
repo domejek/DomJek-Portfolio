@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1e40af;
-  --color-primary-light: #3b82f6;
-  --color-primary-dark: #1e3a8a;
-  --color-accent: #1e40af;
-  --color-navy: #0f172a;
-  --color-navy-light: #1e293b;
-  --color-slate: #334155;
-  --color-gray: #64748b;
-  --color-gray-light: #94a3b8;
-  --color-light: #f1f5f9;
+  --color-primary: #3e5a86;
+  --color-primary-light: #5b77a3;
+  --color-primary-dark: #2f4668;
+  --color-accent: #3e5a86;
+  --color-navy: #101828;
+  --color-navy-light: #1f2a3a;
+  --color-slate: #3b4653;
+  --color-gray: #5b6674;
+  --color-gray-light: #8a94a6;
+  --color-light: #f2f5f9;
   --color-lighter: #f8fafc;
-  --color-success: #10b981;
+  --color-success: #2f9e6e;
 
-  --shadow-sm-custom: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md-custom: 0 2px 6px rgba(15, 23, 42, 0.07);
-  --shadow-lg-custom: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-xl-custom: 0 12px 32px rgba(15, 23, 42, 0.1);
+  --shadow-sm-custom: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md-custom: 0 2px 6px rgba(16, 24, 40, 0.07);
+  --shadow-lg-custom: 0 8px 24px rgba(16, 24, 40, 0.08);
+  --shadow-xl-custom: 0 12px 32px rgba(16, 24, 40, 0.1);
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-display: 'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 html {
@@ -30,6 +30,15 @@ html {
 body {
   @apply bg-white font-sans text-slate antialiased;
   margin: 0;
+}
+
+[id] {
+  scroll-margin-top: 88px;
+}
+
+section:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: -2px;
 }
 
 .container {

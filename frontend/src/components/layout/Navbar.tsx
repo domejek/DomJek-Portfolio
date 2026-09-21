@@ -34,13 +34,13 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 px-0 py-4 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 px-0 py-4 backdrop-blur-md">
       <div className="container flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 text-xl font-bold tracking-tight text-white no-underline">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md border border-white/20 font-serif text-lg font-semibold">
+        <Link to="/" className="flex items-center gap-3 text-xl font-bold tracking-tight text-navy no-underline">
+          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-display text-lg font-semibold text-white">
             DJ
           </span>{' '}
-          <span className="hidden font-serif font-semibold sm:inline">Dominik Jeksties</span>
+          <span className="hidden font-display font-semibold sm:inline">Dominik Jeksties</span>
         </Link>
 
         <button
@@ -51,17 +51,17 @@ export function Navbar() {
           aria-expanded={isOpen}
         >
           <span
-            className={`block h-[2px] w-6 rounded-sm bg-gray-light transition-all duration-300 ${
+            className={`block h-[2px] w-6 rounded-sm bg-gray transition-all duration-300 ${
               isOpen ? 'translate-y-[7px] rotate-45' : ''
             }`}
           />
           <span
-            className={`block h-[2px] w-6 rounded-sm bg-gray-light transition-all duration-300 ${
+            className={`block h-[2px] w-6 rounded-sm bg-gray transition-all duration-300 ${
               isOpen ? 'opacity-0' : ''
             }`}
           />
           <span
-            className={`block h-[2px] w-6 rounded-sm bg-gray-light transition-all duration-300 ${
+            className={`block h-[2px] w-6 rounded-sm bg-gray transition-all duration-300 ${
               isOpen ? '-translate-y-[7px] -rotate-45' : ''
             }`}
           />
@@ -72,7 +72,7 @@ export function Navbar() {
             isOpen ? 'flex max-h-96' : 'hidden'
           } md:flex md:flex-row md:items-center md:gap-8 md:px-0 md:pb-0 ${
             isOpen
-              ? 'absolute left-0 right-0 top-full bg-navy/95 shadow-lg backdrop-blur-xl'
+              ? 'absolute left-0 right-0 top-full bg-white shadow-lg backdrop-blur-xl'
               : ''
           }`}
         >
@@ -81,20 +81,20 @@ export function Navbar() {
               <a
                 href={`/#${item.target}`}
                 onClick={(e) => handleSectionClick(e, item.target)}
-                className="group relative text-[0.95rem] font-medium text-gray-light no-underline transition-colors hover:text-white"
+                className="group relative text-[0.95rem] font-medium text-gray no-underline transition-colors hover:text-navy"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-primary-light transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
               </a>
             </li>
           ))}
           <li>
             <Link
               to="/blog"
-              className="group relative text-[0.95rem] font-medium text-gray-light no-underline transition-colors hover:text-white"
+              className="group relative text-[0.95rem] font-medium text-gray no-underline transition-colors hover:text-navy"
             >
               Blog
-              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-primary-light transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
           </li>
         </ul>

@@ -60,7 +60,7 @@ export function TechStack() {
           {displayItems.map((item) => (
             <div
               key={item.name}
-              className="animate-on-scroll rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-primary-light/60"
+              className="animate-on-scroll rounded-lg border border-slate-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-primary-light/60 hover:shadow-md-custom"
             >
               <div className="mb-4 flex items-center gap-4">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary/10">

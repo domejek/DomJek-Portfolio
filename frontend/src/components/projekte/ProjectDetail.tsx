@@ -24,7 +24,7 @@ export function ProjectDetail() {
   if (!project) {
     return (
       <div className="container py-20 text-center">
-        <h1 className="mb-4 font-serif text-3xl font-semibold text-navy">Projekt nicht gefunden</h1>
+        <h1 className="mb-4 font-display text-3xl font-semibold text-navy">Projekt nicht gefunden</h1>
         <Link to="/#projects" className="font-semibold text-primary no-underline hover:text-primary-dark">
           Zurück zu den Projekten
         </Link>
@@ -42,7 +42,7 @@ export function ProjectDetail() {
           >
             &larr; Zurück zu den Projekten
           </Link>
-          <h1 className="mb-4 font-serif text-3xl font-semibold text-navy md:text-4xl">{project.name}</h1>
+          <h1 className="mb-4 font-display text-3xl font-semibold text-navy md:text-4xl">{project.name}</h1>
           <TechTags tags={project.technologies} />
         </div>
       </section>
