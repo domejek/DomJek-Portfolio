@@ -1,0 +1,30 @@
+# Cloudflare Workers Static Assets — Header für dominikjeksties.de
+# Doku: https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# Hinweis: Diese Datei gilt nur für statische Assets. Antworten des Workers
+# (/api/*) müssen ihre Header selbst in backend/server.js setzen.
+
+# Die CSP-Ausnahmen für Google Fonts (style-src/font-src) entfallen, sobald die
+# Schriften in P1 selbst gehostet werden.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+
+# Vite-Assets enthalten einen Content-Hash im Dateinamen und können unbegrenzt gecacht werden.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Ungehashte Bilder (z. B. og-card) ändern sich ohne neuen Dateinamen — eine Woche Cache.
+/images/*
+  Cache-Control: public, max-age=604800
+
+# Dokumente und Icons: kurz cachen, damit Aktualisierungen zeitnah ankommen.
+/lebenslauf.pdf
+  Cache-Control: public, max-age=86400
+
+/favicon.svg
+  Cache-Control: public, max-age=86400
