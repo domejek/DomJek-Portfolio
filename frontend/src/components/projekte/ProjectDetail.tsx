@@ -2,22 +2,46 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchProjects } from '../../lib/api';
 import { getBlogPost } from '../../data/blog';
+import { usePageMeta } from '../../hooks/usePageMeta';
+import { truncate } from '../../lib/seo';
 import type { Project } from '../../types';
 import { Icon } from '../ui/Icons';
 import { TechTags } from '../ui/TechTags';
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const [project, setProject] = useState<Project | null>(null);
+  const [loaded, setLoaded] = useState<{ slug?: string; project: Project | null }>({ project: null });
+
+  // Solange die Antwort für den aktuellen Slug fehlt, gilt das Projekt als nicht geladen.
+  const resolved = loaded.slug === slug;
+  const project = resolved ? loaded.project : null;
 
   useEffect(() => {
+    let cancelled = false;
+
     fetchProjects()
       .then((res) => {
+        if (cancelled) return;
         const found = res.projects.find((p) => p.slug === slug || p.name === slug);
-        setProject(found ?? null);
+        setLoaded({ slug, project: found ?? null });
       })
-      .catch(() => setProject(null));
+      .catch(() => {
+        if (!cancelled) setLoaded({ slug, project: null });
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [slug]);
+
+  usePageMeta({
+    title: project ? `${project.name} – Dominik Jeksties` : 'Projekt nicht gefunden – Dominik Jeksties',
+    description: project
+      ? truncate(project.description)
+      : 'Das gesuchte Projekt existiert nicht oder wurde verschoben.',
+    path: `/projekte/${project?.slug ?? slug ?? ''}`,
+    noindex: resolved && !project,
+  });
 
   const relatedPost = slug ? getBlogPost(slug === 'energiemarktdarstellung' ? 'energiemarkt-visualisierung-python-plotly' : '') : undefined;
 
