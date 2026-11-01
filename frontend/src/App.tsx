@@ -12,6 +12,10 @@ const BlogPost = lazy(() =>
 const ProjectDetail = lazy(() =>
   import('./components/projekte/ProjectDetail').then((m) => ({ default: m.ProjectDetail })),
 );
+const Impressum = lazy(() => import('./pages/Impressum').then((m) => ({ default: m.Impressum })));
+const Datenschutz = lazy(() =>
+  import('./pages/Datenschutz').then((m) => ({ default: m.Datenschutz })),
+);
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,8 @@ const router = createBrowserRouter([
       { path: 'blog', element: <BlogList /> },
       { path: 'blog/:slug', element: <BlogPost /> },
       { path: 'projekte/:slug', element: <ProjectDetail /> },
+      { path: 'impressum', element: <Impressum /> },
+      { path: 'datenschutz', element: <Datenschutz /> },
       { path: '*', element: <HomePage /> },
     ],
   },

@@ -20,6 +20,18 @@ jobs:
         run: npm ci
         working-directory: frontend
 
+      - name: Legal contact data from secret (optional)
+        working-directory: frontend
+        env:
+          LEGAL_CONTACT_JSON: ${{ secrets.LEGAL_CONTACT_JSON }}
+        run: |
+          if [ -n "$LEGAL_CONTACT_JSON" ]; then
+            printf '%s' "$LEGAL_CONTACT_JSON" > src/data/legal.local.json
+            echo "legal.local.json written from secret."
+          else
+            echo "::warning::Secret LEGAL_CONTACT_JSON is missing - Impressum will deploy without a postal address."
+          fi
+
       - name: Build frontend
         run: npm run build
         working-directory: frontend
