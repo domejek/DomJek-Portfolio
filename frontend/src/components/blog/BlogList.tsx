@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 import { blogPosts } from '../../data/blog';
+import { usePageMeta } from '../../hooks/usePageMeta';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export function BlogList() {
   const ref = useScrollAnimation<HTMLDivElement>('.animate-on-scroll');
+
+  usePageMeta({
+    title: 'Blog – Dominik Jeksties',
+    description:
+      'Tutorials, Case Studies und Einblicke zu PHP, Grafana, Monitoring, Docker und DevOps – von Dominik Jeksties.',
+    path: '/blog',
+  });
 
   return (
     <div className="container py-8 pb-16" ref={ref}>

@@ -1,11 +1,23 @@
 import { MDXProvider } from '@mdx-js/react';
 import { Link, useParams } from 'react-router-dom';
 import { getBlogPost } from '../../data/blog';
+import { usePageMeta } from '../../hooks/usePageMeta';
+import { truncate } from '../../lib/seo';
 import { mdxComponents } from './mdxComponents';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPost(slug) : undefined;
+
+  usePageMeta({
+    title: post ? `${post.meta.title} – Dominik Jeksties` : 'Beitrag nicht gefunden – Dominik Jeksties',
+    description: post
+      ? truncate(post.meta.excerpt)
+      : 'Der gesuchte Blog-Beitrag existiert nicht oder wurde verschoben.',
+    path: `/blog/${post?.meta.slug ?? slug ?? ''}`,
+    type: 'article',
+    noindex: !post,
+  });
 
   if (!post) {
     return (

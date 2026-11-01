@@ -8,8 +8,16 @@ import { SoftSkills } from '../components/sections/SoftSkills';
 import { TechStack } from '../components/sections/TechStack';
 import { Timeline } from '../components/sections/Timeline';
 import { Volunteering } from '../components/sections/Volunteering';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 export function HomePage() {
+  usePageMeta({
+    title: 'Dominik Jeksties – Softwareentwickler aus Hagen',
+    description:
+      'Dominik Jeksties – Softwareentwickler aus Hagen. Full-Stack-Entwicklung mit PHP, JavaScript, Python, Monitoring und DevOps.',
+    path: '/',
+  });
+
   return (
     <>
       <Hero />
