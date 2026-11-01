@@ -31,7 +31,7 @@ export function BlogList() {
                 </Link>
               </h2>
               <p className="mb-4 leading-relaxed text-gray">{post.meta.excerpt}</p>
-              <div className="text-sm text-gray-light">
+              <div className="text-sm text-gray">
                 <span>{post.meta.date}</span>
                 <span className="ml-4">· {post.meta.readTime}</span>
               </div>
