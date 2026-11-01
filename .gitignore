@@ -12,7 +12,8 @@ vendor/
 /frontend/.env.local
 /frontend/.env.example
 
-
+# Private Legal-Daten (Vorlage: /frontend/src/data/legal.local.example.json)
+/frontend/src/data/legal.local.json
 
 # Build outputs
 dist/

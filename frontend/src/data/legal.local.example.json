@@ -1,0 +1,11 @@
+{
+  "name": "Vor- und Nachname",
+  "street": "Straße und Hausnummer",
+  "postalCode": "PLZ",
+  "city": "Ort",
+  "country": "Deutschland",
+  "email": "name@example.com",
+  "phone": "",
+  "phoneHref": "",
+  "vatId": ""
+}

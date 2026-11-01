@@ -64,6 +64,8 @@ const today = toIsoDate(new Date());
 const entries = [
   { path: '/', lastmod: today },
   { path: '/blog', lastmod: today },
+  { path: '/impressum', lastmod: today },
+  { path: '/datenschutz', lastmod: today },
   ...(await collectBlogUrls()),
   ...(await collectProjectUrls()),
 ];
