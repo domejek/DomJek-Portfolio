@@ -70,11 +70,49 @@ check_endpoint() {
     ok "$name → GET $path: HTTP 200, success:true"
 }
 
+# Prüft, ob ein Response-Header vorhanden ist (Groß-/Kleinschreibung egal)
+has_header() {
+    local path="$1"
+    local header="$2"
+    curl -sI "$BASE_URL$path" | tr -d '\r' | grep -qi "^${header}:"
+}
+
+# Prüft Cache-Control- und Security-Header der API-GET-Routen
+check_api_headers() {
+    local path="$1"
+    local name="$2"
+    local cache_control
+
+    cache_control=$(curl -sI "$BASE_URL$path" | tr -d '\r' | grep -i '^cache-control:' | cut -d' ' -f2-)
+
+    if printf '%s' "$cache_control" | grep -qF 'public, max-age=300, stale-while-revalidate=86400'; then
+        ok "$name → GET $path: Cache-Control gesetzt"
+    else
+        bad "$name → GET $path: Cache-Control fehlt/falsch (gefunden: '${cache_control:-keiner}')"
+    fi
+
+    local header missing=0
+    for header in \
+        'Strict-Transport-Security' \
+        'X-Content-Type-Options' \
+        'Referrer-Policy' \
+        'Permissions-Policy'; do
+        if ! has_header "$path" "$header"; then
+            bad "$name → GET $path: Header '$header' fehlt"
+            missing=1
+        fi
+    done
+    [ "$missing" -eq 0 ] && ok "$name → GET $path: Security-Header gesetzt"
+}
+
 wait_for_server
 
 check_endpoint "/health"         "Health-Check "
 check_endpoint "/api/projects"   "Projekte     "
 check_endpoint "/api/tech-stack" "Tech-Stack   "
+
+check_api_headers "/api/projects"   "Projekte     "
+check_api_headers "/api/tech-stack" "Tech-Stack   "
 
 echo ""
 echo "──────────────────────────────────────────"
