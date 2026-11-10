@@ -60,20 +60,6 @@ export function Datenschutz() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Schriftarten">
-        <p>
-          Zur einheitlichen Darstellung der Schriften werden derzeit Webfonts von Google Fonts geladen.
-          Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
-          Beim Laden der Schriften wird die IP-Adresse an Google übertragen; dabei kann nicht
-          ausgeschlossen werden, dass Daten auch an Server in den USA übermittelt werden.
-        </p>
-        <p>
-          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer ansprechenden
-          und konsistenten Darstellung). Die Schriften sollen künftig lokal von diesem Server
-          ausgeliefert werden; dieser Abschnitt entfällt dann.
-        </p>
-      </LegalSection>
-
       <LegalSection title="Kontaktaufnahme">
         <p>
           Bei einer Kontaktaufnahme per E-Mail werden die übermittelten Angaben (E-Mail-Adresse,
