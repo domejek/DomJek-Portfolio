@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
 export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(
   observeAllSelector?: string,
   deps: unknown[] = [],
@@ -16,20 +18,54 @@ export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(
 
     if (!elements || elements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' },
-    );
+    const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
 
-    elements.forEach((el) => observer.observe(el));
+    const revealAll = () => {
+      elements.forEach((element) => element.classList.add('visible'));
+    };
 
-    return () => observer.disconnect();
+    let observer: IntersectionObserver | null = null;
+
+    const startObserving = () => {
+      if (observer) return;
+
+      const newObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' },
+      );
+
+      observer = newObserver;
+
+      elements.forEach((element) => {
+        if (!element.classList.contains('visible')) {
+          newObserver.observe(element);
+        }
+      });
+    };
+
+    const applyPreference = () => {
+      if (mediaQuery.matches) {
+        observer?.disconnect();
+        observer = null;
+        revealAll();
+      } else {
+        startObserving();
+      }
+    };
+
+    applyPreference();
+    mediaQuery.addEventListener('change', applyPreference);
+
+    return () => {
+      mediaQuery.removeEventListener('change', applyPreference);
+      observer?.disconnect();
+    };
   }, [observeAllSelector, depsKey]);
 
   return containerRef;
