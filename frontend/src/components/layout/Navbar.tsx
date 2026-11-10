@@ -25,10 +25,10 @@ export function Navbar() {
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
-        document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(target)?.scrollIntoView();
       }, 100);
     } else {
-      document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(target)?.scrollIntoView();
     }
     close();
   };

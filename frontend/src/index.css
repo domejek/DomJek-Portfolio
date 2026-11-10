@@ -87,3 +87,31 @@ section:focus-visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-on-scroll,
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-fade-in-left,
+  .animate-fade-in-right {
+    animation: none;
+  }
+
+  /* Weitere Transitions (FAQ, Navbar, Hover) effektiv abschalten */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

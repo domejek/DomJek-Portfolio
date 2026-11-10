@@ -13,7 +13,7 @@ const heroMeta: { icon: IconName; content: React.ReactNode }[] = [
 export function Hero() {
   const scrollTo = (target: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(target)?.scrollIntoView();
   };
 
   return (
@@ -55,7 +55,7 @@ export function Hero() {
               to="/#contact"
               onClick={(e: React.MouseEvent) => {
                 e.preventDefault();
-                setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 50);
+                setTimeout(() => document.getElementById('contact')?.scrollIntoView(), 50);
               }}
               className="inline-flex items-center gap-2 border-b border-slate-400 py-3 text-base font-medium text-navy no-underline transition-colors hover:border-primary hover:text-primary"
             >
