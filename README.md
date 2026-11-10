@@ -197,6 +197,8 @@ docker run -p 8080:80 -p 3000:3000 portfolio-backend:latest
 
 Das `frontend/Dockerfile` erzeugt zusätzlich ein reines Nginx-Image (nur das gebaute Frontend).
 
+Hinweis: Im Docker-/Nginx-Betrieb greift weiterhin der SPA-Fallback (`try_files ... /index.html`). Unbekannte Pfade liefern dort die 404-UI, aber HTTP 200. Der echte 404-Status wird nur im Cloudflare-Worker-Deployment gesetzt (`not_found_handling: "none"` + Route-Liste aus `dist/routes.json`).
+
 Das Workflow `docker-publish.yml` baut und pusht außerdem `ghcr.io/<owner>/portfolio-backend:latest` zu GitHub Container Registry.
 
 ---

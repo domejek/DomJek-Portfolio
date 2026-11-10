@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 /**
- * Erzeugt nach dem Build die vollständige sitemap.xml in `dist/`.
+ * Erzeugt nach dem Build die vollständige sitemap.xml und routes.json in `dist/`.
  *
  * Quellen:
  *   - feste Routen (`/`, `/blog`)
  *   - alle Blog-Slugs aus `src/content/blog/*.mdx`
  *   - alle Projekt-Slugs aus `../backend/data/projects.json`
+ *
+ * `routes.json` ist die Liste der gültigen App-Routen für den Cloudflare
+ * Worker: bekannte Pfade bekommen das SPA-Shell mit 200, unbekannte mit 404.
  */
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
@@ -86,4 +89,8 @@ ${urls}
 await mkdir(distDir, { recursive: true });
 await writeFile(path.join(distDir, 'sitemap.xml'), xml, 'utf8');
 
+const routes = [...new Set(entries.map(({ path: routePath }) => routePath))].sort();
+await writeFile(path.join(distDir, 'routes.json'), `${JSON.stringify(routes, null, 2)}\n`, 'utf8');
+
 console.log(`[sitemap] ${entries.length} URLs → dist/sitemap.xml`);
+console.log(`[routes] ${routes.length} Routen → dist/routes.json`);

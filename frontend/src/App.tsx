@@ -16,6 +16,9 @@ const Impressum = lazy(() => import('./pages/Impressum').then((m) => ({ default:
 const Datenschutz = lazy(() =>
   import('./pages/Datenschutz').then((m) => ({ default: m.Datenschutz })),
 );
+const NotFound = lazy(() =>
+  import('./pages/NotFound').then((m) => ({ default: m.NotFound })),
+);
 
 const router = createBrowserRouter([
   {
@@ -28,7 +31,7 @@ const router = createBrowserRouter([
       { path: 'projekte/:slug', element: <ProjectDetail /> },
       { path: 'impressum', element: <Impressum /> },
       { path: 'datenschutz', element: <Datenschutz /> },
-      { path: '*', element: <HomePage /> },
+      { path: '*', element: <NotFound /> },
     ],
   },
 ]);
