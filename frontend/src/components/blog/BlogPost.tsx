@@ -2,12 +2,18 @@ import { MDXProvider } from '@mdx-js/react';
 import { Link, useParams } from 'react-router-dom';
 import { getBlogPost } from '../../data/blog';
 import { usePageMeta } from '../../hooks/usePageMeta';
+import { useStructuredData } from '../../hooks/useStructuredData';
 import { truncate } from '../../lib/seo';
+import { buildBlogPostingSchema } from '../../lib/structuredData';
 import { mdxComponents } from './mdxComponents';
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPost(slug) : undefined;
+
+  useStructuredData(
+    post ? [{ id: 'blog-posting', data: buildBlogPostingSchema(post.meta) }] : [],
+  );
 
   usePageMeta({
     title: post ? `${post.meta.title} – Dominik Jeksties` : 'Beitrag nicht gefunden – Dominik Jeksties',

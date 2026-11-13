@@ -1,6 +1,9 @@
 export interface PersonalInfo {
   name: string;
+  /** Anzeige-Rolle im Hero, z. B. „Softwareentwickler aus Hagen“. */
   role: string;
+  /** Jobtitel für strukturierte Daten (schema.org `jobTitle`). */
+  jobTitle: string;
   subtitle: string;
   location: string;
   country: string;
@@ -9,6 +12,8 @@ export interface PersonalInfo {
   phone: string;
   phoneHref: string;
   languages: string[];
+  /** Fachliche Schwerpunkte für schema.org `knowsAbout`. */
+  knowsAbout: string[];
   githubUrl: string;
   linkedinUrl: string;
   resumePdf: string;
@@ -81,6 +86,10 @@ export interface BlogPostMeta {
   category: string;
   excerpt: string;
   date: string;
+  /** Optionales ISO-Datum (YYYY-MM-DD) für schema.org, überschreibt `date`. */
+  datePublished?: string;
+  /** Optionales Beitragsbild für Social Cards und JSON-LD. */
+  image?: string;
   readTime: string;
   tags: string[];
 }
