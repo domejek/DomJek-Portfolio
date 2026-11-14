@@ -1,6 +1,7 @@
 export const SITE_URL = 'https://dominikjeksties.de';
 export const DEFAULT_OG_IMAGE = '/images/og-card.png';
-export const DEFAULT_OG_IMAGE_ALT = 'Dominik Jeksties – Softwareentwickler aus Hagen';
+export const DEFAULT_OG_IMAGE_ALT =
+  'Social-Media-Vorschaukarte von Dominik Jeksties, Softwareentwickler aus Hagen.';
 
 /**
  * Kürzt Text auf eine Länge, die in Suchergebnissen nicht abgeschnitten wird.

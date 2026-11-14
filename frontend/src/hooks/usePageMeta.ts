@@ -67,6 +67,7 @@ export function usePageMeta({
     upsertMeta('property', 'og:url', url);
     upsertMeta('property', 'og:type', type);
     upsertMeta('property', 'og:image', imageUrl);
+    upsertMeta('property', 'og:image:type', 'image/png');
     upsertMeta('property', 'og:image:alt', imageAlt);
     upsertMeta('property', 'og:image:width', '1200');
     upsertMeta('property', 'og:image:height', '630');
@@ -77,6 +78,7 @@ export function usePageMeta({
     upsertMeta('name', 'twitter:title', title);
     upsertMeta('name', 'twitter:description', description);
     upsertMeta('name', 'twitter:image', imageUrl);
+    upsertMeta('name', 'twitter:image:alt', imageAlt);
 
     upsertMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow');
   }, [title, description, path, image, imageAlt, type, noindex]);
