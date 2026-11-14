@@ -15,6 +15,8 @@
       "!/images/*",
       "!/favicon.svg",
       "!/lebenslauf.pdf",
+      "!/llms.txt",
+      "!/.well-known/*",
       "!/robots.txt",
       "!/sitemap.xml",
       "!/routes.json"
