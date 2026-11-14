@@ -1,5 +1,5 @@
 import { aboutHighlights } from '../../data/personal';
-import personalImage from '../../assets/profile.webp';
+import { profileImageFallback, profileImageSrcSet } from '../../data/profileImages';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { Icon } from '../ui/Icons';
 import { SectionTitle } from '../ui/SectionTitle';
@@ -39,7 +39,9 @@ export function About() {
 
           <div className="animate-on-scroll flex flex-col items-center gap-6 lg:items-start">
             <img
-              src={personalImage}
+              src={profileImageFallback}
+              srcSet={profileImageSrcSet}
+              sizes="(min-width: 640px) 288px, 256px"
               alt="Dominik Jeksties - Softwareentwickler für Backend & Monitoring"
               loading="lazy"
               width={400}
