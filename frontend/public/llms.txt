@@ -1,0 +1,36 @@
+# Dominik Jeksties – Softwareentwickler aus Hagen
+
+> Portfolio von Dominik Jeksties: Full-Stack-Entwicklung mit PHP/Laravel, JavaScript/React/Node.js, Python, PostgreSQL/InfluxDB, Grafana-Monitoring und Docker.
+
+Diese Website ist die persönliche Portfolio-Seite von Dominik Jeksties (Softwareentwickler, Hagen/NRW). Sie enthält Blog-Artikel, Projektbeschreibungen, den beruflichen Werdegang, den Tech Stack und Kontaktinformationen. Alle Inhalte sind auf Deutsch. Kanonische Basis: https://dominikjeksties.de
+
+## Blog
+
+- [Blog – Tutorials, Case Studies & Einblicke](https://dominikjeksties.de/blog): Übersicht aller Artikel zu PHP, Grafana, Monitoring, Docker und DevOps.
+- [Batterie-Container-Monitoring mit Grafana, InfluxDB & Telegraf](https://dominikjeksties.de/blog/batterie-container-monitoring-grafana-influxdb): Case Study über 30 verteilte Batterie-Container-Standorte, Telegraf/MQTT/Modbus und Grafana-Dashboards.
+- [Energiemarkt-Daten mit Python & Plotly visualisieren](https://dominikjeksties.de/blog/energiemarkt-visualisierung-python-plotly): Tutorial zum automatisierten Abruf und Visualisieren von aFFR- und FCR-Werten mit Python, Pandas, Plotly und Selenium.
+- [Kimai-Abwesenheiten in Grafana visualisieren](https://dominikjeksties.de/blog/kimai-abwesenheiten-grafana-visualisieren): PHP-Brücke zwischen Kimai-API und Grafana für eine Team-Abwesenheitsübersicht.
+
+## Projekte
+
+- [DomJek-Portfolio](https://dominikjeksties.de/projekte/domjek-portfolio): Diese Website – React/Nginx-Frontend, Node.js-API, Docker und Cloudflare Workers.
+- [Absences Grafana Kimai](https://dominikjeksties.de/projekte/absences-grafana-kimai): Visualisierung von Urlaub, Krankheit und Feiertagen aus Kimai in Grafana.
+- [DomJek-LaravelREST](https://dominikjeksties.de/projekte/domjek-laravelrest): RESTful API mit Laravel, CRUD, Authentifizierung und API-Ressourcen.
+- [DomJek-Energiemarktdarstellung](https://dominikjeksties.de/projekte/energiemarktdarstellung): Abruf und Visualisierung von aFFR-/FCR-Werten des deutschen Energiemarkts mit Python, Pandas und Plotly.
+
+## Weitere Seiten
+
+- [Startseite](https://dominikjeksties.de/): Profil, beruflicher Werdegang, Tech Stack, Projekte und FAQ.
+- [Impressum](https://dominikjeksties.de/impressum)
+- [Datenschutz](https://dominikjeksties.de/datenschutz)
+- [Lebenslauf (PDF)](https://dominikjeksties.de/lebenslauf.pdf)
+
+## Kontakt
+
+- E-Mail: dominik@jeksties.de
+- GitHub: https://github.com/domejek
+- LinkedIn: https://www.linkedin.com/in/dominik-jeksties-0162a7216/
+
+## Hinweis zu KI-Katalogen
+
+Diese Website stellt keine aufrufbaren KI-Ressourcen wie MCP-Server, A2A-Agenten oder Plugins bereit. Ein AI Catalog unter `/.well-known/ai-catalog.json` wird daher bewusst nicht veröffentlicht. Diese Datei ist der vorgesehene Einstiegspunkt für KI- und Agenten-Clients.

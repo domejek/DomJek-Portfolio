@@ -151,6 +151,14 @@ cd backend && npx wrangler deploy
 
 ---
 
+## KI- und Agenten-Einstiegspunkte
+
+`/llms.txt` liegt als statische Markdown-Datei unter `frontend/public/llms.txt`. Vite kopiert sie beim Build nach `frontend/dist/`; Cloudflare Workers und Nginx liefern sie als `text/plain` mit HTTP 200 aus. Die Datei enthält eine Kurzbeschreibung der Website sowie Links zu Blog, Projekten und weiteren Seiten.
+
+Ein AI Catalog unter `/.well-known/ai-catalog.json` wird **bewusst nicht** veröffentlicht. Der AI Catalog (Agentic Resource Discovery) beschreibt aufrufbare Agenten-Ressourcen wie MCP-Server, A2A-Agenten, Skills oder OpenAPI-Tools. Dieses Portfolio bietet ausschließlich lesbare Inhalte und eine interne JSON-API für das eigene Frontend – keine für Agenten bestimmten Callable Resources. Ein leerer oder lediglich mit Seitenlinks gefüllter Katalog wäre irreführend. Fehlt die Datei, antworten Cloudflare Worker und Nginx mit einem echten 404 statt mit SPA-HTML. Die Entscheidung ist zusätzlich in `llms.txt` dokumentiert.
+
+---
+
 ## Lokale Entwicklung & Tests (just)
 
 Einmalig:
@@ -197,7 +205,7 @@ docker run -p 8080:80 -p 3000:3000 portfolio-backend:latest
 
 Das `frontend/Dockerfile` erzeugt zusätzlich ein reines Nginx-Image (nur das gebaute Frontend).
 
-Hinweis: Im Docker-/Nginx-Betrieb greift weiterhin der SPA-Fallback (`try_files ... /index.html`). Unbekannte Pfade liefern dort die 404-UI, aber HTTP 200. Der echte 404-Status wird nur im Cloudflare-Worker-Deployment gesetzt (`not_found_handling: "none"` + Route-Liste aus `dist/routes.json`).
+Hinweis: Im Docker-/Nginx-Betrieb greift für Navigationspfade ohne Dateiendung weiterhin der SPA-Fallback (`try_files ... /index.html`). Fehlende Dateien mit Endung (z. B. `/llms.txt` oder `/.well-known/ai-catalog.json`) liefern dagegen einen echten 404. Im Cloudflare-Worker-Deployment setzt `not_found_handling: "none"` zusammen mit der Route-Liste aus `dist/routes.json` den 404-Status für unbekannte App-Routen.
 
 Das Workflow `docker-publish.yml` baut und pusht außerdem `ghcr.io/<owner>/portfolio-backend:latest` zu GitHub Container Registry.
 

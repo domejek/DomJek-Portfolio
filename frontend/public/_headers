@@ -20,6 +20,10 @@
 /images/*
   Cache-Control: public, max-age=604800
 
+# KI-/Agenten-Einstiegspunkt: kurz cachen, damit Aktualisierungen zeitnah ankommen.
+/llms.txt
+  Cache-Control: public, max-age=3600
+
 # Dokumente und Icons: kurz cachen, damit Aktualisierungen zeitnah ankommen.
 /lebenslauf.pdf
   Cache-Control: public, max-age=86400
