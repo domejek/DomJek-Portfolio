@@ -1,4 +1,5 @@
 import { personal } from '../../data/personal';
+import { profileImageFallback, profileImageSrcSet } from '../../data/profileImages';
 import { Icon, type IconName } from '../ui/Icons';
 import { Link } from 'react-router-dom';
 
@@ -75,7 +76,9 @@ export function Hero() {
 
         <div className="animate-fade-in-right flex justify-center md:justify-end">
           <img
-            src={personal.profileImage}
+            src={profileImageFallback}
+            srcSet={profileImageSrcSet}
+            sizes="270px"
             alt="Dominik Jeksties am Schreibtisch, Softwareentwickler aus Hagen"
             className="h-[300px] w-[270px] rounded-xl border border-slate-200 object-cover object-top shadow-md-custom"
             width={270}

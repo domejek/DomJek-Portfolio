@@ -1,5 +1,5 @@
 import type { PersonalInfo } from '../types';
-import profileImage from '../assets/profile.webp';
+import { profileImages } from './profileImages';
 
 export const personal: PersonalInfo = {
   name: 'Dominik Jeksties',
@@ -31,7 +31,7 @@ export const personal: PersonalInfo = {
   githubUrl: 'https://github.com/domejek',
   linkedinUrl: 'https://www.linkedin.com/in/dominik-jeksties-0162a7216/',
   resumePdf: '/lebenslauf.pdf',
-  profileImage,
+  profileImage: profileImages.large,
   description:
     'Softwareentwickler mit Erfahrung in Backend-Systemen, Frontend-Design, Datenverarbeitungen und Monitoring-Infrastrukturen.',
 };
