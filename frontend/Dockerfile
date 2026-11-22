@@ -1,5 +1,10 @@
 FROM node:20-alpine AS build
 
+# Chromium aus dem Alpine-Paket statt des glibc-basierten Chrome für Testing.
+RUN apk add --no-cache chromium nss freetype harfbuzz ttf-freefont
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci

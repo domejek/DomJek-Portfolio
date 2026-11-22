@@ -9,6 +9,9 @@
  *
  * `routes.json` ist die Liste der gültigen App-Routen für den Cloudflare
  * Worker: bekannte Pfade bekommen das SPA-Shell mit 200, unbekannte mit 404.
+ *
+ * `collectSitemapEntries()` wird auch vom Prerender-Skript genutzt, damit
+ * Sitemap, Route-Liste und prerenderte HTML-Dateien dieselben URLs abdecken.
  */
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
@@ -63,34 +66,43 @@ async function collectProjectUrls() {
     .map((slug) => ({ path: `/projekte/${slug}`, lastmod }));
 }
 
-const today = toIsoDate(new Date());
-const entries = [
-  { path: '/', lastmod: today },
-  { path: '/blog', lastmod: today },
-  { path: '/impressum', lastmod: today },
-  { path: '/datenschutz', lastmod: today },
-  ...(await collectBlogUrls()),
-  ...(await collectProjectUrls()),
-];
+export async function collectSitemapEntries() {
+  const today = toIsoDate(new Date());
 
-const urls = entries
-  .map(
-    ({ path: routePath, lastmod }) =>
-      `  <url>\n    <loc>${SITE}${encodeURI(routePath)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`,
-  )
-  .join('\n');
+  return [
+    { path: '/', lastmod: today },
+    { path: '/blog', lastmod: today },
+    { path: '/impressum', lastmod: today },
+    { path: '/datenschutz', lastmod: today },
+    ...(await collectBlogUrls()),
+    ...(await collectProjectUrls()),
+  ];
+}
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isMain) {
+  const entries = await collectSitemapEntries();
+
+  const urls = entries
+    .map(
+      ({ path: routePath, lastmod }) =>
+        `  <url>\n    <loc>${SITE}${encodeURI(routePath)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`,
+    )
+    .join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}
 </urlset>
 `;
 
-await mkdir(distDir, { recursive: true });
-await writeFile(path.join(distDir, 'sitemap.xml'), xml, 'utf8');
+  await mkdir(distDir, { recursive: true });
+  await writeFile(path.join(distDir, 'sitemap.xml'), xml, 'utf8');
 
-const routes = [...new Set(entries.map(({ path: routePath }) => routePath))].sort();
-await writeFile(path.join(distDir, 'routes.json'), `${JSON.stringify(routes, null, 2)}\n`, 'utf8');
+  const routes = [...new Set(entries.map(({ path: routePath }) => routePath))].sort();
+  await writeFile(path.join(distDir, 'routes.json'), `${JSON.stringify(routes, null, 2)}\n`, 'utf8');
 
-console.log(`[sitemap] ${entries.length} URLs → dist/sitemap.xml`);
-console.log(`[routes] ${routes.length} Routen → dist/routes.json`);
+  console.log(`[sitemap] ${entries.length} URLs → dist/sitemap.xml`);
+  console.log(`[routes] ${routes.length} Routen → dist/routes.json`);
+}
