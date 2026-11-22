@@ -105,11 +105,13 @@ Der Vite-Dev-Server proxyt `/api`-Requests automatisch an `http://localhost:3000
 ### Deployment
 
 ```bash
-cd frontend && npm run build   # erzeugt frontend/dist
+cd frontend && npm run build   # erzeugt frontend/dist inkl. prerenderter HTML pro Route
 cd backend && npx wrangler deploy
 ```
 
-`wrangler.jsonc` bindet `frontend/dist` als Statics-Assets ein (`run_worker_first` für `/api/*`).
+`npm run build` führt nach `vite build` `scripts/prerender.mjs` aus: Puppeteer rendert alle 11 öffentlichen Routen und schreibt `dist/<route>/index.html`. Danach prüft das Skript jede Seite mit und ohne JavaScript (ein H1, kein doppelter Inhalt, keine Konsolenfehler, keine unsichtbaren Animationen). Puppeteer nutzt den Chrome aus `~/.cache/puppeteer`; in Alpine-Docker-Builds wird stattdessen das Paket `chromium` über `PUPPETEER_EXECUTABLE_PATH` verwendet.
+
+`wrangler.jsonc` bindet `frontend/dist` als Statics-Assets ein (`run_worker_first` für `/api/*`) und liefert Verzeichnis-Indizes mit `html_handling: "drop-trailing-slash"` unter den kanonischen URLs ohne Slash aus.
 
 ### GitHub Actions Setup
 
@@ -205,7 +207,7 @@ docker run -p 8080:80 -p 3000:3000 portfolio-backend:latest
 
 Das `frontend/Dockerfile` erzeugt zusätzlich ein reines Nginx-Image (nur das gebaute Frontend).
 
-Hinweis: Im Docker-/Nginx-Betrieb greift für Navigationspfade ohne Dateiendung weiterhin der SPA-Fallback (`try_files ... /index.html`). Fehlende Dateien mit Endung (z. B. `/llms.txt` oder `/.well-known/ai-catalog.json`) liefern dagegen einen echten 404. Im Cloudflare-Worker-Deployment setzt `not_found_handling: "none"` zusammen mit der Route-Liste aus `dist/routes.json` den 404-Status für unbekannte App-Routen.
+Hinweis: Im Docker-/Nginx-Betrieb werden prerenderte Routen über `try_files $uri $uri/index.html /index.html` ohne Trailingslash ausgeliefert; für unbekannte Navigationspfade greift weiterhin der SPA-Fallback. Fehlende Dateien mit Endung (z. B. `/llms.txt` oder `/.well-known/ai-catalog.json`) liefern dagegen einen echten 404. Im Cloudflare-Worker-Deployment setzt `not_found_handling: "none"` zusammen mit der Route-Liste aus `dist/routes.json` den 404-Status für unbekannte App-Routen.
 
 Das Workflow `docker-publish.yml` baut und pusht außerdem `ghcr.io/<owner>/portfolio-backend:latest` zu GitHub Container Registry.
 

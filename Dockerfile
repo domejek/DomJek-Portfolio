@@ -1,9 +1,17 @@
 FROM node:20-alpine AS frontend-build
 
+# Puppeteer benötigt für das Prerendern einen Browser; Chrome für Testing läuft
+# nicht auf Alpine, daher wird die passende Chromium-Paketversion verwendet.
+RUN apk add --no-cache chromium nss freetype harfbuzz ttf-freefont
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
 WORKDIR /build/frontend
 COPY frontend/package*.json ./
 RUN npm ci
 COPY frontend/ ./
+# Für Sitemap und Prerender: Projekt-Slugs/Daten liegen im Backend.
+COPY backend/data/ /build/backend/data/
 RUN npm run build
 
 FROM node:20-alpine

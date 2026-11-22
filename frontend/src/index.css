@@ -77,7 +77,8 @@ section:focus-visible {
   animation: fade-in-right 0.8s ease-out 0.2s backwards;
 }
 
-.animate-on-scroll {
+/* Ohne JS bleibt der Inhalt sichtbar; die Animation wird erst mit JS aktiviert. */
+.js .animate-on-scroll {
   opacity: 0;
   transform: translateY(16px);
   transition:
@@ -85,7 +86,7 @@ section:focus-visible {
     transform 0.5s ease-out;
 }
 
-.animate-on-scroll.visible {
+.js .animate-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -95,8 +96,8 @@ section:focus-visible {
     scroll-behavior: auto;
   }
 
-  .animate-on-scroll,
-  .animate-on-scroll.visible {
+  .js .animate-on-scroll,
+  .js .animate-on-scroll.visible {
     opacity: 1;
     transform: none;
     transition: none;
